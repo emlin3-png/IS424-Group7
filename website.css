@@ -1,0 +1,119 @@
+body {
+  background-color: #F4F3F0;
+  color: #22757D;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Navigation bar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.nav-left img {
+  height: 55px;
+  transition: transform 0.3s;
+}
+
+.nav-left img:hover {
+  transform: scale(1.05);
+}
+
+/* Links */
+.nav-right a {
+  color: #F7B9A2;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 1.5rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-right a:hover {
+  color: #F7B9A2; 
+}
+
+/* Fancy underline effect */
+.nav-right a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #F7B9A2;
+  transition: width 0.3s ease;
+}
+
+.nav-right a:hover::after {
+  width: 100%;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .nav-right a {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Container for the 3 images */
+.container {
+  display: flex;
+  justify-content: center; 
+  gap: 1rem; 
+  margin: 2rem auto;
+  max-width: 1000px; 
+}
+
+/* Each column image */
+.column img {
+  width: 100%;       
+  max-width: 300px;  
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
+}
+
+.column img:hover {
+  transform: scale(1.05); 
+}
+
+/* Mobile responsive: stack images */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/* About Us section */
+.about-section {
+  display: flex;
+  justify-content: center;  
+  margin: .5rem auto;
+}
+
+.about-section img {
+  max-width: 800px;  
+  width: 90%;       
+  border-radius: 3px;
+
+}
