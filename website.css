@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 body {
-  background-color: #F4F3F0;
-  color: #22757D;
+  background-color: #fffaee;
   line-height: 1.5;
   text-align: center;
+  font-family: 'Bebas Neue', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* Navigation bar */
@@ -15,10 +17,29 @@ nav {
   top: 0;
   z-index: 1000;
 }
+.uwmadison{
+  margin-top: 2%;
+  font-size: 2rem;
+  color:#a3c0c8;
+  margin-right: 45%;
+  font-weight: 500;
+  margin-bottom: 0%;
+  padding-bottom: 0%;
+  padding-top: 0%;
+}
+
+.ido{
+  font-size: 4rem;
+  color: #406b8c;
+  font-weight: 700;
+  margin-top: 0%;
+  margin-right: 16%;
+  padding-top: 0%;
+}
 
 /* Logo */
 .nav-left img {
-  height: 55px;
+  height: 8em;
   transition: transform 0.3s;
 }
 
@@ -28,16 +49,16 @@ nav {
 
 /* Links */
 .nav-right a {
-  color: #F7B9A2;
+  color:#898357;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 650;
   margin-left: 1.5rem;
   position: relative;
   transition: color 0.3s ease;
 }
 
 .nav-right a:hover {
-  color: #F7B9A2; 
+  color: #bdc1bb; 
 }
 
 /* Fancy underline effect */
@@ -48,12 +69,47 @@ nav {
   bottom: -4px;
   width: 0%;
   height: 2px;
-  background: #F7B9A2;
+  background: #433311;
   transition: width 0.3s ease;
 }
 
 .nav-right a:hover::after {
   width: 100%;
+}
+
+/* Buttons (Sign In / Sign Up) */
+.btn {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: large;
+  text-decoration: none;
+  margin-left: 0.8rem;
+  transition: background 0.25s, color 0.25s, transform 0.12s;
+}
+
+.btn-primary {
+  background: #a3c0c8; 
+  color: #F4F3F0;
+  border: 2px solid #a3c0c8;
+  
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.btn-outline {
+   background: #a3c0c8; 
+  color: #F4F3F0;
+  border: 2px solid #a3c0c8;
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
 }
 
 /* Mobile responsive */
@@ -86,8 +142,9 @@ nav {
 
 /* Each column image */
 .column img {
-  width: 100%;       
-  max-width: 300px;  
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   transition: transform 0.3s;
@@ -112,7 +169,7 @@ nav {
 }
 
 .about-section img {
-  max-width: 800px;  
+  max-width: 50%;  
   width: 90%;       
   border-radius: 3px;
 
