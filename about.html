@@ -6,6 +6,7 @@
     <link rel="icon" href="ido logo.png" type="image/x-icon" />
     <title>About | IDO UW Madison</title>
     <link rel="stylesheet" href="website.css" />
+    <link rel="stylesheet" href="website.js">
   </head>
   <nav>
     <div class="nav-left">
@@ -14,18 +15,35 @@
       </a>
     </div>
     <div class="nav-right">
-      <a href="home.html">Home</a>
       <a href="about.html">About</a>
       <a href="members.html">Members Portal</a>
       <a href="contact.html">Contact</a>
-       <a class="btn btn-outline" href="signin.html">Sign In</a>
-    <a class="btn btn-primary" href="signup.html">Sign Up</a>
+    
     </div>
   </nav>
   <body>
     <div>
-      <h2>Our Mission</h2>
-      <p>
+      <!-- Photo carousel (replaces the static Strang photo) -->
+      <section id="photo-carousel" aria-label="IDO photo carousel" style="margin:0 auto 1.5rem; max-width:900px;">
+        <div class="carousel">
+          <button class="carousel-button prev" aria-label="Previous slide">‹</button>
+          <div class="carousel-track-container">
+            <ul class="carousel-track">
+              <li class="carousel-slide"><img src="about_images/ido image 2.jpeg" alt="About us image"></li>
+              <li class="carousel-slide"><img src="about_images/IMG_4542.HEIC" alt="About us new"></li>
+              <li class="carousel-slide"><img src="about_images/ido image 3.JPG" alt="Event photo 1"></li>
+              <li class="carousel-slide"><img src="about_images/IMG_3480.heic" alt="Event photo 2"></li>
+              <li class="carousel-slide"><img src="about_images/IMG_3986.HEIC" alt="Event photo 3"></li>
+            <li class="carousel-slide"><img src="about_images/IMG_4665.heic" alt="Event photo 3"></li>
+            <li class="carousel-slide"><img src="about_images/IMG_5045.HEIC" alt="Event photo 3"></li>
+            <li class="carousel-slide"><img src="about_images/IMG_6843.HEIC" alt="photo 3" ></li>
+      </ul>
+          </div>
+          <button class="carousel-button next" aria-label="Next slide">›</button>
+        </div>
+      </section>
+      <h2 class="missiontitle">Our Mission</h2>
+      <p class="missionstatement">
         Founded in 2015, Interior Design Organization (IDO) is a professional
         development group for students pursuing a degree in Interior
         Architecture at the University of Wisconsin–Madison. IDO fosters a
@@ -73,6 +91,7 @@
       <a href="mailto:ido.uwmadison@gmail.com" target="_blank">ido.uwmadison@gmail.com</a> or 
       <a href="https://www.instagram.com/idouwmadison/?hl=en" target="_blank">@idouwmadison</a> on Instagram, 
       or check us out on the <a href="https://win.wisc.edu/organization/asid" target="_blank"><u></u>Wisconsin Involvement Network</u></a>!</p>
+
   </body>
   <footer>
     <a href="mailto:ido.uwmadison@gmail.com" target="_blank">
@@ -84,4 +103,5 @@
       @idouwmadison
     </a>
   </footer>
+  <script src="website.js"></script>
 </html>

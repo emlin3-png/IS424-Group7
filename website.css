@@ -7,6 +7,7 @@ body {
   font-family: 'Bebas Neue', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
+
 /* Navigation bar */
 nav {
   display: flex;
@@ -17,6 +18,8 @@ nav {
   top: 0;
   z-index: 1000;
 }
+
+/*THIS SECTION IS FOR HOME.HTML */
 .uwmadison{
   margin-top: 2%;
   font-size: 2rem;
@@ -86,7 +89,7 @@ nav {
   font-size: large;
   text-decoration: none;
   margin-left: 0.8rem;
-  transition: background 0.25s, color 0.25s, transform 0.12s;
+  transition: background 0.15s, color 0.25s, transform 0.12s;
 }
 
 .btn-primary {
@@ -159,16 +162,16 @@ nav {
   .container {
     flex-direction: column;
     align-items: center;
-  }
-}
-/* About Us section */
-.about-section {
+  }}
+
+
+.promise img {
   display: flex;
   justify-content: center;  
   margin: .5rem auto;
-}
-
-
+  max-width: 50%;
+  max-height: 55%; 
+}   
 
 /* Carousel styles */
 .carousel {
@@ -195,7 +198,7 @@ nav {
 .carousel-slide img {
   width: 100%;
   /* increased height for a taller carousel */
-  height: 540px;
+  height: 520px;
   object-fit: cover;
   display: block;
 }
@@ -216,7 +219,7 @@ nav {
 
 @media (max-width: 768px) {
   /* taller mobile height for better visibility */
-  .carousel-slide img { height: 410px; }
+  .carousel-slide img { height: 400px; }
   .strang { max-width: 90%; }
 }
 
