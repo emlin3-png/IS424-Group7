@@ -1,4 +1,13 @@
-  <span id="user-greeting" style="display:none; margin-left:1.2rem; font-size:1.3rem; color:#406b8c; vertical-align:middle;"></span>
+<span
+  id="user-greeting"
+  style="
+    display: none;
+    margin-left: 1.2rem;
+    font-size: 1.3rem;
+    color: #406b8c;
+    vertical-align: middle;
+  "
+></span>
 <!DOCTYPE html>
 <!-- Information Systems 424 Fall 2025 -->
 <!-- Group 7 - Reeya Anand, Natalie Bosco, Charlotte Daly, Isabelle Inthisone, Erica Lin -->
@@ -6,7 +15,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="ido logo.png" type="image/x-icon">
+    <link rel="icon" href="ido logo.png" type="image/x-icon" />
     <title>IDO UW Madison</title>
     <link rel="stylesheet" href="website.css" />
   </head>
@@ -18,41 +27,207 @@
         </a>
       </div>
       <div class="nav-right">
-  <a href="about.html">About</a>
-  <a href="members.html">Members Portal</a>
-  <a href="contact.html">Contact</a>
-  <a class="btn btn-outline" href="signin.html" id="nav-signin">Sign In</a>
-  <a class="btn btn-primary" href="signup.html" id="nav-signup">Sign Up</a>
-  <button id="logout-btn" class="btn btn-outline" style="display:none;">Log Out</button>
+        <a href="about.html">About</a>
+        <a href="members.html">Members Portal</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-outline" href="signin.html" id="nav-signin"
+          >Sign In</a
+        >
+        <a class="btn btn-primary" href="signup.html" id="nav-signup"
+          >Sign Up</a
+        >
+        <button id="logout-btn" class="btn btn-outline" style="display: none">
+          Log Out
+        </button>
       </div>
     </nav>
     <!-- Sign Up Modal -->
-    <div id="signup-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fffaee; border-radius:16px; box-shadow:0 8px 32px rgba(0,0,0,0.18); padding:2rem 2.5rem; z-index:2100; min-width:320px; max-width:90vw;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <h2 style="color:#406b8c;">Sign Up</h2>
-        <button type="button" id="close-signup" style="background:none;border:none;font-size:1.7rem;line-height:1;color:#406b8c;cursor:pointer;">&times;</button>
+    <div
+      id="signup-modal"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fffaee;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        padding: 2rem 2.5rem;
+        z-index: 2100;
+        min-width: 320px;
+        max-width: 90vw;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h2 style="color: #406b8c">Sign Up</h2>
+        <button
+          type="button"
+          id="close-signup"
+          style="
+            background: none;
+            border: none;
+            font-size: 1.7rem;
+            line-height: 1;
+            color: #406b8c;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
       </div>
       <form id="signup-form">
-        <input type="text" id="signup-first" placeholder="First Name" required style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:8px;border:1px solid #a3c0c8;font-size:1rem;">
-        <input type="text" id="signup-last" placeholder="Last Name" required style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:8px;border:1px solid #a3c0c8;font-size:1rem;">
-        <input type="email" id="signup-email" placeholder="Email" required style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:8px;border:1px solid #a3c0c8;font-size:1rem;">
-        <input type="password" id="signup-password" placeholder="Password" required style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:8px;border:1px solid #a3c0c8;font-size:1rem;">
-        <button class="btn btn-primary" type="submit" style="width:100%;margin-bottom:0.5rem;">Sign Up</button>
+        <input
+          type="text"
+          id="signup-first"
+          placeholder="First Name"
+          required
+          style="
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #a3c0c8;
+            font-size: 1rem;
+          "
+        />
+        <input
+          type="text"
+          id="signup-last"
+          placeholder="Last Name"
+          required
+          style="
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #a3c0c8;
+            font-size: 1rem;
+          "
+        />
+        <input
+          type="email"
+          id="signup-email"
+          placeholder="Email"
+          required
+          style="
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #a3c0c8;
+            font-size: 1rem;
+          "
+        />
+        <input
+          type="password"
+          id="signup-password"
+          placeholder="Password"
+          required
+          style="
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #a3c0c8;
+            font-size: 1rem;
+          "
+        />
+        <button
+          class="btn btn-primary"
+          type="submit"
+          style="width: 100%; margin-bottom: 0.5rem"
+        >
+          Sign Up
+        </button>
       </form>
     </div>
     <!-- Sign In Modal -->
-    <div id="signin-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fffaee; border-radius:16px; box-shadow:0 8px 32px rgba(0,0,0,0.18); padding:2rem 2.5rem; z-index:2100; min-width:320px; max-width:90vw;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <h2 style="color:#406b8c;">Sign In</h2>
-        <button type="button" id="close-signin" style="background:none;border:none;font-size:1.7rem;line-height:1;color:#406b8c;cursor:pointer;">&times;</button>
+    <div
+      id="signin-modal"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fffaee;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        padding: 2rem 2.5rem;
+        z-index: 2100;
+        min-width: 320px;
+        max-width: 90vw;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h2 style="color: #406b8c">Sign In</h2>
+        <button
+          type="button"
+          id="close-signin"
+          style="
+            background: none;
+            border: none;
+            font-size: 1.7rem;
+            line-height: 1;
+            color: #406b8c;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
       </div>
       <form id="signin-form">
-        <input type="email" id="signin-email" placeholder="Email" required style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:8px;border:1px solid #a3c0c8;font-size:1rem;">
-        <input type="password" id="signin-password" placeholder="Password" required style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:8px;border:1px solid #a3c0c8;font-size:1rem;">
-        <button class="btn btn-primary" type="submit" style="width:100%;margin-bottom:0.5rem;">Sign In</button>
+        <input
+          type="email"
+          id="signin-email"
+          placeholder="Email"
+          required
+          style="
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #a3c0c8;
+            font-size: 1rem;
+          "
+        />
+        <input
+          type="password"
+          id="signin-password"
+          placeholder="Password"
+          required
+          style="
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #a3c0c8;
+            font-size: 1rem;
+          "
+        />
+        <button
+          class="btn btn-primary"
+          type="submit"
+          style="width: 100%; margin-bottom: 0.5rem"
+        >
+          Sign In
+        </button>
       </form>
     </div>
-   
+
     <h3 class="uwmadison">University of Wisconsin-Madison</h3>
     <h1 class="ido">Interior Design Organization</h1>
     <div class="container">
@@ -67,22 +242,30 @@
         <img src="about_images/IMG_4665.heic" alt="image" />
       </div>
     </div>
-    <div class="promise"><img src="ourpromise.jpg" alt=""></div>
+    <div class="promise"><img src="ourpromise.jpg" alt="" /></div>
     <div>
-      <a href="https://docs.google.com/presentation/d/1HXTCLHgEFWN1ZFK_2z8cO8hDaN1arX7-9JS-NqIsOjI/edit?usp=sharing">
+      <a
+        href="https://docs.google.com/presentation/d/1HXTCLHgEFWN1ZFK_2z8cO8hDaN1arX7-9JS-NqIsOjI/edit?usp=sharing"
+      >
         <h2>Access our Event Calendar</h2>
       </a>
-      <iframe src="https://docs.google.com/presentation/d/1HXTCLHgEFWN1ZFK_2z8cO8hDaN1arX7-9JS-NqIsOjI/edit?usp=sharing"
-        frameborder="0" width="960" height="569" allowfullscreen></iframe>
+      <iframe
+        src="https://docs.google.com/presentation/d/1HXTCLHgEFWN1ZFK_2z8cO8hDaN1arX7-9JS-NqIsOjI/edit?usp=sharing"
+        frameborder="0"
+        width="960"
+        height="569"
+        allowfullscreen
+      ></iframe>
     </div>
+    <script src="website.js"></script>
   </body>
   <footer>
     <a href="mailto:ido.uwmadison@gmail.com" target="_blank">
-      <img src="EmailIcon.png" alt="Email Icon" height="20">
+      <img src="EmailIcon.png" alt="Email Icon" height="20" />
       ido.uwmadison@gmail.com
     </a>
     <a href="https://www.instagram.com/idouwmadison/?hl=en" target="_blank">
-      <img src="InstaIcon.png" alt="Instagram Icon" height="20">
+      <img src="InstaIcon.png" alt="Instagram Icon" height="20" />
       @idouwmadison
     </a>
   </footer>
