@@ -56,7 +56,6 @@ function closeModals() {
   signupModal.style.display = "none";
   signinModal.style.display = "none";
 }
-// i think this line below is throwing an error bc signUpBtn is alr defined as a global const
 if (signUpBtn)
   signUpBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -108,6 +107,7 @@ function r_e(id) {
 
 // Sign up function
 r_e("signup-form").addEventListener("submit", (e) => {
+  alert("Sign up form submitted!");
   // prevent page from auto refresh
   e.preventDefault();
   // capture fname, lname, email, and pass
@@ -115,7 +115,7 @@ r_e("signup-form").addEventListener("submit", (e) => {
   let lname = r_e("signup-last").value;
   let email = r_e("signup-email").value;
   let pass = r_e("signup-password").value;
-  // console.log(fname, lname, email, pass); - tested and works!
+  // console.log(fname, lname, esmail, pass); - tested and works!
   // create user
   auth.createUserWithEmailAndPassword(email, pass).then(() => {
     console.log("User created successfully");
