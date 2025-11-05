@@ -114,32 +114,22 @@ r_e("signup-form").addEventListener("submit", (e) => {
   let lname = r_e("signup-last").value;
   let email = r_e("signup-email").value;
   let pass = r_e("signup-password").value;
-  console.log(fname, lname, email, pass);
+  // console.log(fname, lname, email, pass);
   // create user
-  auth.createUserWithEmailAndPassword(email, pass).then(() => {
-    console.log("User created successfully");
-  });
-  //   .then((userCredential) => {
-  //     console.log("User created successfully:", userCredential.user);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error.message);
-  //   });
-  // });
-
-  // .then(() => {
-  //   // hide the modal, clear the form
-  //   loginmodal.classList.remove("is-active");
-  //   r_e("signup_form").reset();
-  //   r_e("signup_err_msg").innerHTML = "";
-  //   r_e("email2").value = "";
-  //   r_e("password2").value = "";
-  //   signedin = true;
-  // })
-  //   .catch((err) => {
-  //     // make the p show + display the err.message on the page (in red)
-  //     r_e("signup_err_msg").classList.remove("is-hidden");
-  //     r_e("signup_err_msg").innerHTML = err.message;
-  //     r_e("signup_err_msg").classList.add("has-text-danger");
-  //   });
+  auth
+    .createUserWithEmailAndPassword(email, pass)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      // Saves user info to Firestore
+      return db.collection("users").doc(user.uid).set({
+        firstName: fname,
+        lastName: lname,
+        email: email,
+      });
+    })
+    .catch((error) => {
+      console.error("Error during sign up:", error.message);
+    });
+  // don't need to close the modal from here, correct?
+  // can only "sign up/in" with valid emails? (ie won't display as logged in)
 });
