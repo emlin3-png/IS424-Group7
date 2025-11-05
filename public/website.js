@@ -114,11 +114,19 @@ r_e("signup-form").addEventListener("submit", (e) => {
   let lname = r_e("signup-last").value;
   let email = r_e("signup-email").value;
   let pass = r_e("signup-password").value;
-  // console.log(fname, lname, esmail, pass); - tested and works!
+  console.log(fname, lname, email, pass);
   // create user
   auth.createUserWithEmailAndPassword(email, pass).then(() => {
     console.log("User created successfully");
   });
+  //   .then((userCredential) => {
+  //     console.log("User created successfully:", userCredential.user);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error.message);
+  //   });
+  // });
+
   // .then(() => {
   //   // hide the modal, clear the form
   //   loginmodal.classList.remove("is-active");

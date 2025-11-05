@@ -22,10 +22,34 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="website.css" />
-    <!-- Firebase App (the core Firebase SDK) -->
+    <!-- adding firebase stuff!! -->
+    <!-- Firebase SDKs (v8 syntax since you're using namespaced version) -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <!-- Firebase Authentication -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      // import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCwZ8iGB1KRjPGogFreZdWLa-lB9m_LVz4",
+        authDomain: "ido-draft.firebaseapp.com",
+        projectId: "ido-draft",
+        storageBucket: "ido-draft.firebasestorage.app",
+        messagingSenderId: "29070862131",
+        appId: "1:29070862131:web:0bb70dea1ff271f383c046",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Initialize services
+      window.auth = firebase.auth();
+      window.db = firebase.firestore();
+    </script>
   </head>
   <body>
     <nav>
@@ -267,26 +291,6 @@
         allowfullscreen
       ></iframe> -->
     </div>
-    <!-- adding firebase stuff!! -->
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyCwZ8iGB1KRjPGogFreZdWLa-lB9m_LVz4",
-        authDomain: "ido-draft.firebaseapp.com",
-        projectId: "ido-draft",
-        storageBucket: "ido-draft.firebasestorage.app",
-        messagingSenderId: "29070862131",
-        appId: "1:29070862131:web:0bb70dea1ff271f383c046",
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-    </script>
     <script src="website.js"></script>
   </body>
   <footer>
