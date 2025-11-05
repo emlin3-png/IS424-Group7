@@ -149,3 +149,8 @@ r_e("signin-form").addEventListener("submit", (e) => {
   // //   console.error("Error during sign up:", error.message);
   // // });
 });
+
+// Signout Function
+r_e("logout-btn").addEventListener("click", () => {
+  auth.signOut();
+});
