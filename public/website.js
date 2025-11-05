@@ -133,3 +133,19 @@ r_e("signup-form").addEventListener("submit", (e) => {
   // don't need to close the modal from here, correct?
   // can only "sign up/in" with valid emails? (ie won't display as logged in)
 });
+
+// Sign In Function
+r_e("signin-form").addEventListener("submit", (e) => {
+  // prevent page from auto refresh
+  e.preventDefault();
+  // find the email and pass and pass to firebase
+  let email = r_e("signin-email").value;
+  let pass = r_e("signin-password").value;
+  auth.signInWithEmailAndPassword(email, pass);
+  // console.log("Signing in with", email, pass);
+  // need to reset modal?
+  // will want to modify so if invalid creds then not logged in
+  // // .catch((error) => {
+  // //   console.error("Error during sign up:", error.message);
+  // // });
+});
