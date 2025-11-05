@@ -107,7 +107,6 @@ function r_e(id) {
 
 // Sign up function
 r_e("signup-form").addEventListener("submit", (e) => {
-  alert("Sign up form submitted!");
   // prevent page from auto refresh
   e.preventDefault();
   // capture fname, lname, email, and pass
