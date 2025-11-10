@@ -50,6 +50,254 @@
       window.auth = firebase.auth();
       window.db = firebase.firestore();
     </script>
+    <style>
+      /* @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"); */
+
+      body {
+        background-color: #fffaee;
+        line-height: 1.5;
+        text-align: center;
+        font-family: "Bebas Neue", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+      }
+
+      /* Navigation bar */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      /*THIS SECTION IS FOR HOME.HTML */
+      .uwmadison {
+        margin-top: 2%;
+        font-size: 2rem;
+        color: #a3c0c8;
+        margin-right: 45%;
+        font-weight: 500;
+        margin-bottom: 0%;
+        padding-bottom: 0%;
+        padding-top: 0%;
+      }
+
+      .ido {
+        font-size: 4rem;
+        color: #406b8c;
+        font-weight: 700;
+        margin-top: 0%;
+        margin-right: 16%;
+        padding-top: 0%;
+      }
+
+      /* Logo */
+      .nav-left img {
+        height: 8em;
+        transition: transform 0.3s;
+      }
+
+      .nav-left img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Links */
+      .nav-right a {
+        color: #000000;
+        text-decoration: none;
+        font-weight: 650;
+        margin-left: 1.5rem;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-right a:hover {
+        color: #bdc1bb;
+      }
+
+      /* Fancy underline effect */
+      .nav-right a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0%;
+        height: 2px;
+        background: #433311;
+        transition: width 0.3s ease;
+      }
+
+      .nav-right a:hover::after {
+        width: 100%;
+      }
+
+      /* Buttons (Sign In / Sign Up) */
+      .btn {
+        display: inline-block;
+        padding: 0.45rem 0.9rem;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: large;
+        text-decoration: none;
+        margin-left: 0.8rem;
+        transition: background 0.15s, color 0.25s, transform 0.12s;
+      }
+
+      .btn-primary {
+        background: #a3c0c8;
+        color: #f4f3f0;
+        border: 2px solid #a3c0c8;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        opacity: 0.95;
+      }
+
+      .btn-outline {
+        background: #a3c0c8;
+        color: #f4f3f0;
+        border: 2px solid #a3c0c8;
+      }
+
+      .btn-outline:hover {
+        transform: translateY(-2px);
+        opacity: 0.95;
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav-right {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 0.5rem;
+        }
+
+        .nav-right a {
+          margin: 0.5rem 0;
+        }
+      }
+
+      /* Container for the 3 images */
+      .container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem auto;
+        max-width: 1000px;
+      }
+
+      /* Each column image */
+      .column img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s;
+      }
+
+      .column img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Mobile responsive: stack images */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      .promise img {
+        display: flex;
+        justify-content: center;
+        margin: 0.5rem auto;
+        max-width: 50%;
+        max-height: 55%;
+      }
+
+      /* Carousel styles */
+      .carousel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+      .carousel-track-container {
+        overflow: hidden;
+      }
+      .carousel-track {
+        display: flex;
+        transition: transform 0.2s ease;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .carousel-slide {
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+      .carousel-slide img {
+        width: 100%;
+        /* increased height for a taller carousel */
+        height: 520px;
+        object-fit: cover;
+        display: block;
+      }
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(64, 107, 140, 0.85);
+        color: #fff;
+        border: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.6rem;
+      }
+      .carousel-button.prev {
+        left: 0.6rem;
+      }
+      .carousel-button.next {
+        right: 0.6rem;
+      }
+
+      @media (max-width: 768px) {
+        /* taller mobile height for better visibility */
+        .carousel-slide img {
+          height: 400px;
+        }
+        .strang {
+          max-width: 90%;
+        }
+      }
+
+      .missiontitle {
+        font-size: 3.5rem;
+        color: #406b8c;
+        font-weight: 700;
+        margin-top: 2rem;
+      }
+
+      .missionstatement {
+        font-size: 1.5rem;
+        color: #000000;
+        max-width: 800px;
+        margin: 1rem auto 3rem auto;
+        line-height: 1.6;
+      }
+    </style>
   </head>
   <body>
     <nav>
