@@ -21,6 +21,11 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
+    <!-- Bulma -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
     <link rel="stylesheet" href="website.css" />
     <!-- adding firebase stuff!! -->
     <!-- Firebase SDKs (v8 syntax since you're using namespaced version) -->
@@ -51,14 +56,12 @@
       window.db = firebase.firestore();
     </script>
   </head>
-  <body onload="loadPage('home')">
+  <body>
+    <!-- onload="loadPage('home')" -->
     <nav>
       <div class="nav-left">
-        <button
-          onclick="loadPage('home')"
-          style="background: none; border: none; padding: 0"
-        >
-          <img src="IDOlogoclear.png" alt="IDO Logo" />
+        <button style="background: none; border: none; padding: 0">
+          <img src="IDOlogoclear.png" alt="IDO Logo" class="gotoHome" />
         </button>
         <!-- <button onload="loadPage('home')">
           <a>
@@ -67,9 +70,12 @@
         </button> -->
       </div>
       <div class="nav-right">
-        <a href="about.html">About</a>
-        <a href="members.html">Members Portal</a>
-        <a href="contact.html">Contact</a>
+        <!-- <a href="about.html">About</a> -->
+        <p class="gotoAbout">About</p>
+        <!-- <a href="members.html">Members Portal</a> -->
+        <p class="gotoMembersPortal">Members Portal</p>
+        <!-- <a href="contact.html">Contact</a> -->
+        <p class="gotoContact">Contact</p>
         <a class="btn btn-outline" href="signin.html" id="nav-signin"
           >Sign In</a
         >
@@ -268,7 +274,7 @@
       </form>
     </div>
     <main>
-      <div id="Home">
+      <div id="Home" class="">
         <h3 class="uwmadison">University of Wisconsin-Madison</h3>
         <h1 class="ido">Interior Design Organization</h1>
         <div class="container">
@@ -304,7 +310,7 @@
       ></iframe> -->
         </div>
       </div>
-      <div id="About">
+      <div id="About" class="is-hidden">
         <div>
           <!-- Photo carousel (replaces the static Strang photo) -->
           <section
@@ -436,7 +442,7 @@
           >!
         </p>
       </div>
-      <div id="members-portal">
+      <div id="members-portal" class="is-hidden">
         <div>
           <a
             href="https://docs.google.com/document/d/1vsRiIPV7UIcpXUQNfcKNGShhMedm9WY778EorpYfyYk/edit?usp=sharing"
@@ -457,7 +463,7 @@
         />
         <script src="website.js"></script>
       </div>
-      <div id="contact">
+      <div id="contact" class="is-hidden">
         <h1>Meet our Executive Board!</h1>
         <div>
           <!--Would like all of these to display side-by-side-->

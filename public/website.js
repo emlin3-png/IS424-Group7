@@ -154,3 +154,55 @@ r_e("signin-form").addEventListener("submit", (e) => {
 r_e("logout-btn").addEventListener("click", () => {
   auth.signOut();
 });
+
+// defining pages
+const Home = r_e("Home");
+const About = r_e("About");
+const MembersPortal = r_e("members-portal");
+const Contact = r_e("contact");
+// console.log(Home);
+// console.log(About);
+// console.log(MembersPortal);
+// console.log(Contact);
+
+const gotoHome = document.querySelectorAll(".gotoHome");
+const gotoAbout = document.querySelectorAll(".gotoAbout");
+const gotoMembersPortal = document.querySelectorAll(".gotoMembersPortal");
+const gotoContact = document.querySelectorAll(".gotoContact");
+
+// hide all pages & make them appear only when called
+gotoHome.forEach((link) => {
+  link.addEventListener("click", () => {
+    Home.classList.remove("is-hidden");
+    About.classList.add("is-hidden");
+    MembersPortal.classList.add("is-hidden");
+    Contact.classList.add("is-hidden");
+  });
+});
+
+gotoAbout.forEach((link) => {
+  link.addEventListener("click", () => {
+    Home.classList.add("is-hidden");
+    About.classList.remove("is-hidden");
+    MembersPortal.classList.add("is-hidden");
+    Contact.classList.add("is-hidden");
+  });
+});
+
+gotoMembersPortal.forEach((link) => {
+  link.addEventListener("click", () => {
+    Home.classList.add("is-hidden");
+    About.classList.add("is-hidden");
+    MembersPortal.classList.remove("is-hidden");
+    Contact.classList.add("is-hidden");
+  });
+});
+
+gotoContact.forEach((link) => {
+  link.addEventListener("click", () => {
+    Home.classList.add("is-hidden");
+    About.classList.add("is-hidden");
+    MembersPortal.classList.add("is-hidden");
+    Contact.classList.remove("is-hidden");
+  });
+});
