@@ -171,6 +171,37 @@ r_e("logout-btn").addEventListener("click", () => {
   signedin = false;
 });
 
+// will probaby want to incorporate this later on
+// // onauthstatechanged
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     // we're signed in
+//     r_e("sign_in_btn").classList.add("is-hidden");
+//     r_e("savedtab").classList.remove("is-hidden");
+//     r_e("sign_out_btn").classList.remove("is-hidden");
+//     r_e("email1").value = "";
+//     r_e("password1").value = "";
+//     r_e("email2").value = "";
+//     r_e("password2").value = "";
+//     show_saved();
+//     signedin = true;
+//   } else {
+//     // we're signed out
+//     r_e("sign_in_btn").classList.remove("is-hidden");
+//     r_e("savedtab").classList.add("is-hidden");
+//     r_e("sign_out_btn").classList.add("is-hidden");
+//     r_e("email1").value = "";
+//     r_e("password1").value = "";
+//     r_e("email2").value = "";
+//     r_e("password2").value = "";
+//     signedin = false;
+//   }
+// });
+
+//
+//
+//
+// Single Page App
 // defining pages
 const Home = r_e("Home");
 const About = r_e("About");
@@ -222,3 +253,8 @@ gotoContact.forEach((link) => {
     Contact.classList.remove("is-hidden");
   });
 });
+
+// // Members portal shows only when signed in
+// if (signedin == true) {
+//   MembersPortal.classList.remove("is-hidden");
+// }
