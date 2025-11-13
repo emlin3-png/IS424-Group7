@@ -36,6 +36,9 @@
   // responsive: ensure slides still positioned if window resized
   window.addEventListener("resize", () => slides.forEach(setSlidePosition));
 })();
+//
+//
+//
 
 // Modal forms for sign in and sign up
 const signUpBtn = document.querySelector(
@@ -83,27 +86,13 @@ function resetNav() {
   document.getElementById("logout-btn").style.display = "none";
 }
 
-document.getElementById("signup-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  closeModals();
-  showLogoutOnly();
-});
-
-document.getElementById("signin-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  closeModals();
-  showLogoutOnly();
-});
-
-document.getElementById("logout-btn").addEventListener("click", function () {
-  resetNav();
-});
-
 // Note to self: use command + / to comment chunks out!
 // a function to return elements by their IDs
 function r_e(id) {
   return document.querySelector(`#${id}`);
 }
+
+let signedin = false;
 
 // Sign up function
 r_e("signup-form").addEventListener("submit", (e) => {
@@ -119,7 +108,15 @@ r_e("signup-form").addEventListener("submit", (e) => {
   auth
     .createUserWithEmailAndPassword(email, pass)
     .then((userCredential) => {
+      // hide the modal, clear the form, is signedin
+      closeModals();
+      showLogoutOnly();
       const user = userCredential.user;
+      // r_e("signup_form").reset(); // Uncessary?
+      r_e("signup_err_msg").innerHTML = "";
+      r_e("signup-email").value = "";
+      r_e("signup-password").value = "";
+      signedin = true;
       // Saves user info to Firestore
       return db.collection("users").doc(user.uid).set({
         firstName: fname,
@@ -128,10 +125,11 @@ r_e("signup-form").addEventListener("submit", (e) => {
       });
     })
     .catch((error) => {
+      r_e("signup_err_msg").classList.remove("is-hidden");
+      r_e("signup_err_msg").innerHTML = error.message;
+      r_e("signup_err_msg").classList.add("has-text-danger");
       console.error("Error during sign up:", error.message);
     });
-  // don't need to close the modal from here, correct?
-  // can only "sign up/in" with valid emails? (ie won't display as logged in)
 });
 
 // Sign In Function
@@ -141,18 +139,36 @@ r_e("signin-form").addEventListener("submit", (e) => {
   // find the email and pass and pass to firebase
   let email = r_e("signin-email").value;
   let pass = r_e("signin-password").value;
-  auth.signInWithEmailAndPassword(email, pass);
-  // console.log("Signing in with", email, pass);
-  // need to reset modal?
-  // will want to modify so if invalid creds then not logged in
-  // // .catch((error) => {
-  // //   console.error("Error during sign up:", error.message);
-  // // });
+  auth
+    .signInWithEmailAndPassword(email, pass)
+    .then((user) => {
+      // reset the sign in form, hide the modal
+      // r_e("signin_form").reset(); // Uncessary?
+      closeModals();
+      showLogoutOnly();
+      r_e("signin_err_msg").innerHTML = "";
+      r_e("signin-email").value = "";
+      r_e("signin-password").value = "";
+      signedin = true;
+    })
+    .catch((error) => {
+      // make the p show + display the err.message on the page (in red)
+      const msg =
+        typeof error.message === "string" && error.message.includes("{")
+          ? JSON.parse(error.message).error.message
+          : error.message;
+      r_e("signin_err_msg").classList.remove("is-hidden");
+      r_e("signin_err_msg").innerHTML = msg;
+      // console.log(err);
+      r_e("signin_err_msg").classList.add("has-text-danger");
+    });
 });
 
 // Signout Function
 r_e("logout-btn").addEventListener("click", () => {
   auth.signOut();
+  resetNav();
+  signedin = false;
 });
 
 // defining pages
