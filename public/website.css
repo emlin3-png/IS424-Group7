@@ -60,6 +60,23 @@ nav {
   transition: color 0.3s ease;
 }
 
+/* Some pages use <p> for nav items (single-page navigation); style them like links */
+.nav-right p {
+  display: inline-block;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 650;
+  margin-left: 1.5rem;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
 .nav-right a:hover {
   color: #bdc1bb;
 }
