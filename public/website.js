@@ -72,11 +72,33 @@ if (signInBtn)
 closeSignup.addEventListener("click", closeModals);
 closeSignin.addEventListener("click", closeModals);
 
-function showLogoutOnly() {
+function showLogoutOnly(user) {
   document.getElementById("nav-signin").style.display = "none";
   document.getElementById("nav-signup").style.display = "none";
   document.getElementById("user-greeting").style.display = "none";
   document.getElementById("logout-btn").style.display = "inline-block";
+  // Show greeting next to logo
+  const greetingLeft = document.getElementById("user-greeting-left");
+  if (greetingLeft) {
+    // Try to get first name from Firestore if available
+    if (user && user.uid) {
+      db.collection("users").doc(user.uid).get().then(doc => {
+        if (doc.exists && doc.data().firstName) {
+          greetingLeft.textContent = `Hello, ${doc.data().firstName}`;
+          greetingLeft.style.display = "inline-block";
+        } else {
+          greetingLeft.textContent = "Hello!";
+          greetingLeft.style.display = "inline-block";
+        }
+      }).catch(() => {
+        greetingLeft.textContent = "Hello!";
+        greetingLeft.style.display = "inline-block";
+      });
+    } else {
+      greetingLeft.textContent = "Hello!";
+      greetingLeft.style.display = "inline-block";
+    }
+  }
 }
 
 function resetNav() {
@@ -96,28 +118,21 @@ let signedin = false;
 
 // Sign up function
 r_e("signup-form").addEventListener("submit", (e) => {
-  // prevent page from auto refresh
   e.preventDefault();
-  // capture fname, lname, email, and pass
   let fname = r_e("signup-first").value;
   let lname = r_e("signup-last").value;
   let email = r_e("signup-email").value;
   let pass = r_e("signup-password").value;
-  // console.log(fname, lname, email, pass);
-  // create user
   auth
     .createUserWithEmailAndPassword(email, pass)
     .then((userCredential) => {
-      // hide the modal, clear the form, is signedin
       closeModals();
-      showLogoutOnly();
+      showLogoutOnly(userCredential.user);
       const user = userCredential.user;
-      // r_e("signup_form").reset(); // Uncessary?
       r_e("signup_err_msg").innerHTML = "";
       r_e("signup-email").value = "";
       r_e("signup-password").value = "";
       signedin = true;
-      // Saves user info to Firestore
       return db.collection("users").doc(user.uid).set({
         firstName: fname,
         lastName: lname,
@@ -134,32 +149,26 @@ r_e("signup-form").addEventListener("submit", (e) => {
 
 // Sign In Function
 r_e("signin-form").addEventListener("submit", (e) => {
-  // prevent page from auto refresh
   e.preventDefault();
-  // find the email and pass and pass to firebase
   let email = r_e("signin-email").value;
   let pass = r_e("signin-password").value;
   auth
     .signInWithEmailAndPassword(email, pass)
-    .then((user) => {
-      // reset the sign in form, hide the modal
-      // r_e("signin_form").reset(); // Uncessary?
+    .then((userCredential) => {
       closeModals();
-      showLogoutOnly();
+      showLogoutOnly(userCredential.user);
       r_e("signin_err_msg").innerHTML = "";
       r_e("signin-email").value = "";
       r_e("signin-password").value = "";
       signedin = true;
     })
     .catch((error) => {
-      // make the p show + display the err.message on the page (in red)
       const msg =
         typeof error.message === "string" && error.message.includes("{")
           ? JSON.parse(error.message).error.message
           : error.message;
       r_e("signin_err_msg").classList.remove("is-hidden");
       r_e("signin_err_msg").innerHTML = msg;
-      // console.log(err);
       r_e("signin_err_msg").classList.add("has-text-danger");
     });
 });
@@ -172,14 +181,15 @@ r_e("logout-btn").addEventListener("click", () => {
 });
 
 
-// Ensure nav buttons reflect auth state after reload, after DOM is ready
+// Ensure nav buttons and greeting reflect auth state after reload, after DOM is ready
 window.addEventListener('DOMContentLoaded', () => {
   auth.onAuthStateChanged((user) => {
     if (user) {
-      showLogoutOnly();
-      // Optionally show greeting, etc.
+      showLogoutOnly(user);
     } else {
       resetNav();
+      const greetingLeft = document.getElementById("user-greeting-left");
+      if (greetingLeft) greetingLeft.style.display = "none";
     }
   });
 });
