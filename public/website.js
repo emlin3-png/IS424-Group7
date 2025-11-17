@@ -254,6 +254,38 @@ gotoContact.forEach((link) => {
   });
 });
 
+// NAV active state handling: mark clicked nav item or current page
+function clearActiveNav() {
+  document.querySelectorAll('.nav-right a, .nav-right p').forEach(el => el.classList.remove('active'));
+}
+
+function setActiveNav(el) {
+  clearActiveNav();
+  if (el) el.classList.add('active');
+}
+
+// attach click handlers to nav items
+document.querySelectorAll('.nav-right a, .nav-right p').forEach(el => {
+  el.addEventListener('click', (e) => {
+    // if it's an anchor that navigates away, active state is still useful pre-navigation
+    setActiveNav(el);
+  });
+});
+
+// on load, set active based on current URL (for multi-page links)
+window.addEventListener('DOMContentLoaded', () => {
+  const path = window.location.pathname.split('/').pop();
+  if (!path || path === 'index.html') {
+    // mark Home - find .gotoHome or nothing
+    const homeEl = document.querySelector('.gotoHome') || document.querySelector('.nav-right a[href="index.html"]');
+    if (homeEl) setActiveNav(homeEl);
+  } else {
+    // try to find an anchor with matching href
+    const match = document.querySelector(`.nav-right a[href="${path}"]`);
+    if (match) setActiveNav(match);
+  }
+});
+
 // // Members portal shows only when signed in
 // if (signedin == true) {
 //   MembersPortal.classList.remove("is-hidden");

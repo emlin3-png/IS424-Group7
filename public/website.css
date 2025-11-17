@@ -80,6 +80,15 @@ nav {
   color: #bdc1bb;
 }
 
+/* Active nav item styling */
+.nav-right a.active,
+.nav-right p.active {
+  color: #a3c0c8; /* accent color when active */
+  background: rgba(163,192,200,0.08);
+  padding: 0.28rem 0.6rem;
+  border-radius: 12px;
+}
+
 /* Fancy underline effect */
 .nav-right a::after {
   content: "";
