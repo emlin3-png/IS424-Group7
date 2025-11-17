@@ -171,32 +171,18 @@ r_e("logout-btn").addEventListener("click", () => {
   signedin = false;
 });
 
-// will probaby want to incorporate this later on
-// // onauthstatechanged
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     // we're signed in
-//     r_e("sign_in_btn").classList.add("is-hidden");
-//     r_e("savedtab").classList.remove("is-hidden");
-//     r_e("sign_out_btn").classList.remove("is-hidden");
-//     r_e("email1").value = "";
-//     r_e("password1").value = "";
-//     r_e("email2").value = "";
-//     r_e("password2").value = "";
-//     show_saved();
-//     signedin = true;
-//   } else {
-//     // we're signed out
-//     r_e("sign_in_btn").classList.remove("is-hidden");
-//     r_e("savedtab").classList.add("is-hidden");
-//     r_e("sign_out_btn").classList.add("is-hidden");
-//     r_e("email1").value = "";
-//     r_e("password1").value = "";
-//     r_e("email2").value = "";
-//     r_e("password2").value = "";
-//     signedin = false;
-//   }
-// });
+
+// Ensure nav buttons reflect auth state after reload, after DOM is ready
+window.addEventListener('DOMContentLoaded', () => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      showLogoutOnly();
+      // Optionally show greeting, etc.
+    } else {
+      resetNav();
+    }
+  });
+});
 
 //
 //
