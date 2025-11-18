@@ -322,3 +322,86 @@ nav {
   .site-footer { flex-direction:column; text-align:center; }
   .site-footer .links { justify-content:center; }
 }
+
+/* Boxed card for 'We are...' section */
+.we-are-box {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(64,107,140,0.10);
+  border: 2px solid #a3c0c8;
+  padding: 2.2rem 2.5rem 2.2rem 2.5rem;
+  margin: 2.5rem auto 2.2rem auto;
+  max-width: 700px;
+  text-align: left;
+}
+
+/* Executive Board boxed cards */
+.exec-board-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  justify-content: center;
+  margin: 2.5rem auto 2.2rem auto;
+  max-width: 600px;
+}
+.exec-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(64,107,140,0.10);
+  border: 2px solid #a3c0c8;
+  padding: 1.2rem 1rem;
+  aspect-ratio: 1/1;
+  min-width: 0;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.exec-card h3 {
+  font-size: 2rem;
+  color: #406b8c;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.exec-card p {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 0.3rem;
+}
+.exec-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+  margin-bottom: 0.8rem;
+  border: 2px solid #a3c0c8;
+}
+
+@media (max-width: 900px) {
+  .we-are-box {
+    padding: 1.2rem 0.7rem;
+    max-width: 98vw;
+  }
+  .exec-board-row {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    max-width: 98vw;
+  }
+  .exec-card {
+    aspect-ratio: 1/1;
+    padding: 1.1rem 0.7rem;
+    width: 100%;
+  }
+}
+
+.meetexec{
+  font-size: 3.5rem;
+  color: #406b8c;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}

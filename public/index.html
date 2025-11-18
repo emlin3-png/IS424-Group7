@@ -380,7 +380,7 @@
             college experience and prepare for their future careers
           </p>
         </div>
-        <div style="text-align: justify; padding-left: 20rem">
+        <div class="we-are-box">
           <h1>We are...</h1>
           <ul>
             <li>A student-run organization</li>
@@ -391,27 +391,24 @@
             We run two to four total events each month between our two
             categories:
           </h1>
-          <div>
-            <!--My vision is that the "Networking Events" and "Social Events" boxes are side-by-side -->
-            <div>
-              <h2 style="padding-left: 2rem">Networking Events</h2>
-              <ul style="padding-left: 4rem">
+          <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+            <div style="flex:1; min-width:220px; background:#f7fafc; border-radius:12px; box-shadow:0 2px 8px rgba(64,107,140,0.07); padding:1.2rem 1rem;">
+              <h2 style="color:#406b8c;">Networking Events</h2>
+              <ul>
                 <li>Alumni Q&As</li>
                 <li>Professional Panelists</li>
                 <li>Firm Tours</li>
                 <li>IIDA Events</li>
               </ul>
-              <!--I'd like to include some images here, wihtin the box-->
             </div>
-            <div>
-              <h2 style="padding-left: 2rem">Socials</h2>
-              <ul style="padding-left: 4rem">
+            <div style="flex:1; min-width:220px; background:#f7fafc; border-radius:12px; box-shadow:0 2px 8px rgba(64,107,140,0.07); padding:1.2rem 1rem;">
+              <h2 style="color:#406b8c;">Socials</h2>
+              <ul>
                 <li>Trivia Nights</li>
                 <li>Study Sessions</li>
                 <li>Software Workshops</li>
                 <li>Leopolds/game night</li>
               </ul>
-              <!--I'd like to include some images here, wihtin the box-->
             </div>
           </div>
         </div>
@@ -453,10 +450,10 @@
         />
       </div>
       <div id="contact" class="is-hidden">
-        <h1>Meet our Executive Board!</h1>
-        <div>
-          <!--Would like all of these to display side-by-side-->
-          <div>
+        <h1 class="meetexec">Meet our Executive Board!</h1>
+        <div class="exec-board-row">
+          <div class="exec-card">
+            <img src="execphotos/baileyexecphoto.jpg" alt="Bailey Skahan Executive Photo" class="exec-photo" />
             <h3>BAILEY SKAHAN</h3>
             <h4><i>President</i></h4>
             <p>
@@ -475,7 +472,8 @@
               >
             </p>
           </div>
-          <div>
+          <div class="exec-card">
+            <img src="execphotos/shannonm.png" alt="Shannon Moran Executive Photo" class="exec-photo" />
             <h3>SHANNON MORAN</h3>
             <h4><i>Social Media Manager</i></h4>
             <p>
@@ -496,7 +494,8 @@
               >
             </p>
           </div>
-          <div>
+          <div class="exec-card">
+            <img src="execphotos/clairew.JPG" alt="Claire Wendland Executive Photo" class="exec-photo" />
             <h3>CLAIRE WENDLAND</h3>
             <h4><i>Event Coordinator/IIDA Liaison</i></h4>
             <p>
@@ -514,12 +513,15 @@
               >
             </p>
           </div>
-          <div>
-            <h3>EVELYN SRUBAS</h3>
-            <h4><i>Event Coordinator</i></h4>
-            <p>
-              Year in School: Senior <br />
-              Hometown: Green Bay, WI <br />
+          <div class="exec-card">
+        
+      
+              <img src="execphotos/evelyns.jpeg" alt="Evelyn Srubas Executive Photo" class="exec-photo" />
+              <h3>EVELYN SRUBAS</h3>
+              <h4><i>Event Coordinator</i></h4>
+              <p>
+                Year in School: Senior <br />
+                Hometown: Green Bay, WI <br />
               Hobbies: Embroidery, Cooking/Baking, and Hiking!<br />
               Favorite Thing About IDO: creating an opportunity to develop a
               stronger community in IA, and growing as a professional through
@@ -532,12 +534,13 @@
               >
             </p>
           </div>
-          <div>
+          <div class="exec-card">
+            <img src="execphotos/natalieh.jpeg" alt="Natalie Holzhauer Executive Photo" class="exec-photo" />
             <h3>NATALIE HOLZHAUER</h3>
             <h4><i>Communications & Outreach Admin</i></h4>
             <p>
               Year in School: Junior<br />
-              Hometwon: New Berlin, WI<br />
+              Hometown: New Berlin, WI<br />
               Hobbies: Volleyball, going to the gym, and hanging out with
               friends and family!<br />
               Favorite Thing About IDO: I love how IDO offers opportunities for
@@ -559,8 +562,9 @@
       <div class="brand">
         <div>
           <div style="font-weight:800">Interior Design Organization</div>
-          <div class="small">University of Wisconsin–Madison</div>
-        </div>
+            <img src="execphotos/natalieh.jpeg" alt="Natalie Holzhauer Executive Photo" class="exec-photo" />
+            <h3>NATALIE HOLZHAUER</h3>
+            <h4><i>Communications & Outreach Admin</i></h4>
       </div>
       <div class="links">
         <a href="mailto:ido.uwmadison@gmail.com">
