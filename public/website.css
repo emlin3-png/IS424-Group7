@@ -335,6 +335,36 @@ nav {
   text-align: left;
 }
 
+/* Members portal resources box */
+.members-resources-box {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(64,107,140,0.10);
+  border: 2px solid #a3c0c8;
+  padding: 2.2rem 2.5rem 2.2rem 2.5rem;
+  margin: 2.5rem auto 2.2rem auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+.members-resources-box a {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.members-resources-box a:hover {
+  transform: translateY(-2px);
+}
+
+.members-resources-box h1 {
+  font-size: 1.5rem;
+  color: #406b8c;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
 /* Executive Board boxed cards */
 .exec-board-row {
   display: grid;
