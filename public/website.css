@@ -332,7 +332,25 @@ nav {
   padding: 2.2rem 2.5rem 2.2rem 2.5rem;
   margin: 2.5rem auto 2.2rem auto;
   max-width: 700px;
-  text-align: left;
+  text-align: center;
+}
+
+.we-are-box h1 {
+  font-size: 2.5rem;
+  color: #406b8c;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.we-are-box ul {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.we-are-box li {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Members portal resources box */
