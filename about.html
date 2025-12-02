@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="ido logo.png" type="image/x-icon" />
+    <title>About | IDO UW Madison</title>
+  <link rel="stylesheet" href="website.css" />
+  </head>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="IDOlogoclear.png" alt="IDO Logo" />
+      </a>
+    </div>
+    <div class="nav-right">
+      <a href="about.html">About</a>
+      <a href="members.html">Members Portal</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn-outline" href="signin.html" id="nav-signin">Sign In</a>
+      <a class="btn btn-primary" href="signup.html" id="nav-signup">Sign Up</a>
+      <button id="logout-btn" class="btn btn-outline" style="display: none">
+        Log Out
+      </button>
+    </div>
+  </nav>
+  <!-- Sign Up Modal -->
+  <div
+    id="signup-modal"
+    style="
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fffaee;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      padding: 2rem 2.5rem;
+      z-index: 2100;
+      min-width: 320px;
+      max-width: 90vw;
+    "
+  >
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <h2 style="color: #406b8c">Sign Up</h2>
+      <button
+        type="button"
+        id="close-signup"
+        style="
+          background: none;
+          border: none;
+          font-size: 1.7rem;
+          line-height: 1;
+          color: #406b8c;
+          cursor: pointer;
+        "
+      >
+        &times;
+      </button>
+    </div>
+    <form id="signup-form">
+      <input
+        type="text"
+        id="signup-first"
+        placeholder="First Name"
+        required
+        style="
+          width: 100%;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          border-radius: 8px;
+          border: 1px solid #a3c0c8;
+          font-size: 1rem;
+        "
+      />
+      <input
+        type="text"
+        id="signup-last"
+        placeholder="Last Name"
+        required
+        style="
+          width: 100%;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          border-radius: 8px;
+          border: 1px solid #a3c0c8;
+          font-size: 1rem;
+        "
+      />
+      <input
+        type="email"
+        id="signup-email"
+        placeholder="Email"
+        required
+        style="
+          width: 100%;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          border-radius: 8px;
+          border: 1px solid #a3c0c8;
+          font-size: 1rem;
+        "
+      />
+      <input
+        type="password"
+        id="signup-password"
+        placeholder="Password"
+        required
+        style="
+          width: 100%;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          border-radius: 8px;
+          border: 1px solid #a3c0c8;
+          font-size: 1rem;
+        "
+      />
+      <button
+        class="btn btn-primary"
+        type="submit"
+        style="width: 100%; margin-bottom: 0.5rem"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+  <!-- Sign In Modal -->
+  <div
+    id="signin-modal"
+    style="
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fffaee;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      padding: 2rem 2.5rem;
+      z-index: 2100;
+      min-width: 320px;
+      max-width: 90vw;
+    "
+  >
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <h2 style="color: #406b8c">Sign In</h2>
+      <button
+        type="button"
+        id="close-signin"
+        style="
+          background: none;
+          border: none;
+          font-size: 1.7rem;
+          line-height: 1;
+          color: #406b8c;
+          cursor: pointer;
+        "
+      >
+        &times;
+      </button>
+    </div>
+    <form id="signin-form">
+      <input
+        type="email"
+        id="signin-email"
+        placeholder="Email"
+        required
+        style="
+          width: 100%;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          border-radius: 8px;
+          border: 1px solid #a3c0c8;
+          font-size: 1rem;
+        "
+      />
+      <input
+        type="password"
+        id="signin-password"
+        placeholder="Password"
+        required
+        style="
+          width: 100%;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          border-radius: 8px;
+          border: 1px solid #a3c0c8;
+          font-size: 1rem;
+        "
+      />
+      <button
+        class="btn btn-primary"
+        type="submit"
+        style="width: 100%; margin-bottom: 0.5rem"
+      >
+        Sign In
+      </button>
+    </form>
+  </div>
+  <body>
+    <div>
+      <!-- Photo carousel (replaces the static Strang photo) -->
+      <section
+        id="photo-carousel"
+        aria-label="IDO photo carousel"
+        style="margin: 0 auto 1.5rem; max-width: 900px"
+      >
+        <div class="carousel">
+          <button class="carousel-button prev" aria-label="Previous slide">
+            ‹
+          </button>
+          <div class="carousel-track-container">
+            <ul class="carousel-track">
+              <li class="carousel-slide">
+                <img src="about_images/ido image 2.jpeg" alt="About us image" />
+              </li>
+              <li class="carousel-slide">
+                <img
+                  src="about_images/Screenshot IMG_4542.png"
+                  alt="About us new"
+                />
+              </li>
+              <li class="carousel-slide">
+                <img src="about_images/ido image 3.JPG" alt="Event photo 1" />
+              </li>
+              <li class="carousel-slide">
+                <img
+                  src="about_images/Screenshot IMG_3480..png"
+                  alt="Event photo 2"
+                />
+              </li>
+              <li class="carousel-slide">
+                <img
+                  src="about_images/Screenshot IMG_3986.png"
+                  alt="Event photo 3"
+                />
+              </li>
+              <li class="carousel-slide">
+                <img
+                  src="about_images/Screenshot IMG_4665.png"
+                  alt="Event photo 3"
+                />
+              </li>
+              <li class="carousel-slide">
+                <img
+                  src="about_images/Screenshot IMG_5045.png"
+                  alt="Event photo 3"
+                />
+              </li>
+              <li class="carousel-slide">
+                <img src="about_images/Screenshot IMG_6843.png" alt="photo 3" />
+              </li>
+            </ul>
+          </div>
+          <button class="carousel-button next" aria-label="Next slide">
+            ›
+          </button>
+        </div>
+      </section>
+      <h2 class="missiontitle">Our Mission</h2>
+      <p class="missionstatement">
+        Founded in 2015, Interior Design Organization (IDO) is a professional
+        development group for students pursuing a degree in Interior
+        Architecture at the University of Wisconsin–Madison. IDO fosters a
+        supportive community of aspiring interior designers, offering
+        opportunities for peer connection, skill-building, and professional
+        networking to help students thrive throughout their college experience
+        and prepare for their future careers
+      </p>
+    </div>
+    <div style="text-align: justify; padding-left: 20rem">
+      <h1>We are...</h1>
+      <ul>
+        <li>A student-run organization</li>
+        <li>A resource for SoHE’s design focused majors</li>
+        <li>Open to anyone interested in interior design!</li>
+      </ul>
+      <h1>
+        We run two to four total events each month between our two categories:
+      </h1>
+      <div>
+        <!--My vision is that the "Networking Events" and "Social Events" boxes are side-by-side -->
+        <div>
+          <h2 style="padding-left: 2rem">Networking Events</h2>
+          <ul style="padding-left: 4rem">
+            <li>Alumni Q&As</li>
+            <li>Professional Panelists</li>
+            <li>Firm Tours</li>
+            <li>IIDA Events</li>
+          </ul>
+          <!--I'd like to include some images here, wihtin the box-->
+        </div>
+        <div>
+          <h2 style="padding-left: 2rem">Socials</h2>
+          <ul style="padding-left: 4rem">
+            <li>Trivia Nights</li>
+            <li>Study Sessions</li>
+            <li>Software Workshops</li>
+            <li>Leopolds/game night</li>
+          </ul>
+          <!--I'd like to include some images here, wihtin the box-->
+        </div>
+      </div>
+    </div>
+    <p>
+      Interested in Joining? Please reach out to
+      <a href="mailto:ido.uwmadison@gmail.com" target="_blank"
+        >ido.uwmadison@gmail.com</a
+      >
+      or
+      <a href="https://www.instagram.com/idouwmadison/?hl=en" target="_blank"
+        >@idouwmadison</a
+      >
+      on Instagram, or check us out on the
+      <a href="https://win.wisc.edu/organization/asid" target="_blank"
+        ><u>Wisconsin Involvement Network</u></a
+      >!
+    </p>
+    <footer class="site-footer">
+      <div class="brand">
+        <div>
+          <div style="font-weight:800">Interior Design Organization</div>
+          <div class="small">University of Wisconsin–Madison</div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="mailto:ido.uwmadison@gmail.com">
+          <img src="EmailIcon.png" alt="Email" onerror="this.style.display='none'" />
+          ido.uwmadison@gmail.com
+        </a>
+        <a href="https://www.instagram.com/idouwmadison/?hl=en" target="_blank">
+          <img src="InstaIcon.png" alt="Instagram" onerror="this.style.display='none'" />
+          @idouwmadison
+        </a>
+      </div>
+    </footer>
+    <script src="website.js"></script>
+  </body>
+</html>
