@@ -82,18 +82,22 @@ function showLogoutOnly(user) {
   if (greetingLeft) {
     // Try to get first name from Firestore if available
     if (user && user.uid) {
-      db.collection("users").doc(user.uid).get().then(doc => {
-        if (doc.exists && doc.data().firstName) {
-          greetingLeft.textContent = `Hello, ${doc.data().firstName}`;
-          greetingLeft.style.display = "inline-block";
-        } else {
+      db.collection("users")
+        .doc(user.uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists && doc.data().firstName) {
+            greetingLeft.textContent = `Hello, ${doc.data().firstName}`;
+            greetingLeft.style.display = "inline-block";
+          } else {
+            greetingLeft.textContent = "Hello!";
+            greetingLeft.style.display = "inline-block";
+          }
+        })
+        .catch(() => {
           greetingLeft.textContent = "Hello!";
           greetingLeft.style.display = "inline-block";
-        }
-      }).catch(() => {
-        greetingLeft.textContent = "Hello!";
-        greetingLeft.style.display = "inline-block";
-      });
+        });
     } else {
       greetingLeft.textContent = "Hello!";
       greetingLeft.style.display = "inline-block";
@@ -180,9 +184,8 @@ r_e("logout-btn").addEventListener("click", () => {
   signedin = false;
 });
 
-
 // Ensure nav buttons and greeting reflect auth state after reload, after DOM is ready
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       showLogoutOnly(user);
@@ -252,28 +255,32 @@ gotoContact.forEach((link) => {
 
 // NAV active state handling: mark clicked nav item or current page
 function clearActiveNav() {
-  document.querySelectorAll('.nav-right a, .nav-right p').forEach(el => el.classList.remove('active'));
+  document
+    .querySelectorAll(".nav-right a, .nav-right p")
+    .forEach((el) => el.classList.remove("active"));
 }
 
 function setActiveNav(el) {
   clearActiveNav();
-  if (el) el.classList.add('active');
+  if (el) el.classList.add("active");
 }
 
 // attach click handlers to nav items
-document.querySelectorAll('.nav-right a, .nav-right p').forEach(el => {
-  el.addEventListener('click', (e) => {
+document.querySelectorAll(".nav-right a, .nav-right p").forEach((el) => {
+  el.addEventListener("click", (e) => {
     // if it's an anchor that navigates away, active state is still useful pre-navigation
     setActiveNav(el);
   });
 });
 
 // on load, set active based on current URL (for multi-page links)
-window.addEventListener('DOMContentLoaded', () => {
-  const path = window.location.pathname.split('/').pop();
-  if (!path || path === 'index.html') {
+window.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname.split("/").pop();
+  if (!path || path === "index.html") {
     // mark Home - find .gotoHome or nothing
-    const homeEl = document.querySelector('.gotoHome') || document.querySelector('.nav-right a[href="index.html"]');
+    const homeEl =
+      document.querySelector(".gotoHome") ||
+      document.querySelector('.nav-right a[href="index.html"]');
     if (homeEl) setActiveNav(homeEl);
   } else {
     // try to find an anchor with matching href
