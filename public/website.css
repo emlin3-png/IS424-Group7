@@ -164,29 +164,36 @@ nav {
 /* Mobile responsive */
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
-    align-items: center;
-    padding: 0.8rem 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5rem 0.8rem;
   }
 
   .nav-right {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    width: 100%;
-    margin-top: 0.5rem;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0;
   }
 
   .nav-right a,
   .nav-right p {
-    margin: 0.4rem 0;
-    font-size: 1.1rem;
+    margin: 0;
+    font-size: 0.75rem;
   }
 
   .btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
     margin-left: 0;
+  }
+
+  #user-greeting-left {
+    font-size: 0.9rem !important;
   }
 }
 
