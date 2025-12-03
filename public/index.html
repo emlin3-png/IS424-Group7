@@ -49,17 +49,28 @@
   <body>
     <!-- onload="loadPage('home')" -->
     <nav>
-      <div class="nav-left" style="display: flex; align-items: center; gap: 1.2rem;">
+      <div
+        class="nav-left"
+        style="display: flex; align-items: center; gap: 1.2rem"
+      >
         <button style="background: none; border: none; padding: 0">
           <img src="IDOlogoclear.png" alt="IDO Logo" class="gotoHome" />
         </button>
-  <span id="user-greeting-left" style="display:none; font-size:1.3rem; color:#111; font-weight:600;"></span>
+        <span
+          id="user-greeting-left"
+          style="
+            display: none;
+            font-size: 1.3rem;
+            color: #111;
+            font-weight: 600;
+          "
+        ></span>
       </div>
       <div class="nav-right">
         <!-- <a href="about.html">About</a> -->
         <p class="gotoAbout">About</p>
         <!-- <a href="members.html">Members Portal</a> -->
-        <p class="gotoMembersPortal">Members Portal</p>
+        <p id="memberportalbtn" class="gotoMembersPortal">Members Portal</p>
         <!-- <a href="contact.html">Contact</a> -->
         <p class="gotoContact">Contact</p>
         <a class="btn btn-outline" href="signin.html" id="nav-signin"
@@ -71,7 +82,16 @@
         <button id="logout-btn" class="btn btn-outline" style="display: none">
           Log Out
         </button>
-        <span id="user-greeting" style="display:none; margin-left:1.2rem; font-size:1.3rem; color:#cbd5e1; vertical-align:middle;"></span>
+        <span
+          id="user-greeting"
+          style="
+            display: none;
+            margin-left: 1.2rem;
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            vertical-align: middle;
+          "
+        ></span>
       </div>
     </nav>
     <!-- Sign Up Modal -->
@@ -285,10 +305,17 @@
           <img src="Screenshot feedbacked our promis.png" alt="" />
         </div>
         <div>
-          <a class="calendar-card" href="https://docs.google.com/presentation/d/1HXTCLHgEFWN1ZFK_2z8cO8hDaN1arX7-9JS-NqIsOjI/edit?usp=sharing" target="_blank" rel="noopener">
+          <a
+            class="calendar-card"
+            href="https://docs.google.com/presentation/d/1HXTCLHgEFWN1ZFK_2z8cO8hDaN1arX7-9JS-NqIsOjI/edit?usp=sharing"
+            target="_blank"
+            rel="noopener"
+          >
             <div class="calendar-card-content">
               <h2>Access our Event Calendar</h2>
-              <p class="calendar-card-sub">Click to view upcoming events, socials, and workshops </p>
+              <p class="calendar-card-sub">
+                Click to view upcoming events, socials, and workshops
+              </p>
             </div>
           </a>
           <!-- <iframe
@@ -372,8 +399,10 @@
           <h2 class="missiontitle">Our Mission</h2>
           <p class="missionstatement">
             Founded in 2015, Interior Design Organization (IDO) is a
-            professional development group for students who are passionate about design, whether they are pursuing degrees in Interior Architecture, Design, Innovation & Society, Landscape Architecture, and more.
-            IDO fosters a supportive community of aspiring interior designers,
+            professional development group for students who are passionate about
+            design, whether they are pursuing degrees in Interior Architecture,
+            Design, Innovation & Society, Landscape Architecture, and more. IDO
+            fosters a supportive community of aspiring interior designers,
             offering opportunities for peer connection, skill-building, and
             professional networking to help students thrive throughout their
             college experience and prepare for their future careers.
@@ -382,16 +411,25 @@
         <div class="we-are-box">
           <h1>Who we are</h1>
           <ul>
-            <li> We are a student-run organization, serving as a resource for the School of Human Ecology's design-focused majors
-             We are open to anyone interested in interior design!</li>
+            <li>
+              We are a student-run organization, serving as a resource for the
+              School of Human Ecology's design-focused majors We are open to
+              anyone interested in interior design!
+            </li>
           </ul>
-          <h1>
-            We run 2-4 events each month between two
-            categories:
-          </h1>
-          <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-            <div style="flex:1; min-width:220px; background:#f7fafc; border-radius:12px; box-shadow:0 2px 8px rgba(64,107,140,0.07); padding:1.2rem 1rem;">
-              <h2 style="color:#406b8c;">Networking Events</h2>
+          <h1>We run 2-4 events each month between two categories:</h1>
+          <div style="display: flex; gap: 2rem; flex-wrap: wrap">
+            <div
+              style="
+                flex: 1;
+                min-width: 220px;
+                background: #f7fafc;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(64, 107, 140, 0.07);
+                padding: 1.2rem 1rem;
+              "
+            >
+              <h2 style="color: #406b8c">Networking Events</h2>
               <ul>
                 <li>Alumni Q&As</li>
                 <li>Professional Panelists</li>
@@ -399,8 +437,17 @@
                 <li>IIDA Events</li>
               </ul>
             </div>
-            <div style="flex:1; min-width:220px; background:#f7fafc; border-radius:12px; box-shadow:0 2px 8px rgba(64,107,140,0.07); padding:1.2rem 1rem;">
-              <h2 style="color:#406b8c;">Socials</h2>
+            <div
+              style="
+                flex: 1;
+                min-width: 220px;
+                background: #f7fafc;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(64, 107, 140, 0.07);
+                padding: 1.2rem 1rem;
+              "
+            >
+              <h2 style="color: #406b8c">Socials</h2>
               <ul>
                 <li>Trivia Nights</li>
                 <li>Study Sessions</li>
@@ -446,12 +493,17 @@
           src="AutoCAD Text Scale Chart.JPG"
           alt="AutoCAD Text Scale Chart"
         />
+        <div id="registered_users"></div>
       </div>
       <div id="contact" class="is-hidden">
         <h1 class="meetexec">Meet our Executive Board!</h1>
         <div class="exec-board-row">
           <div class="exec-card">
-            <img src="execphotos/baileyexecphoto.jpg" alt="Bailey Skahan Executive Photo" class="exec-photo" />
+            <img
+              src="execphotos/baileyexecphoto.jpg"
+              alt="Bailey Skahan Executive Photo"
+              class="exec-photo"
+            />
             <h3>BAILEY SKAHAN</h3>
             <h4><i>President</i></h4>
             <p>
@@ -471,7 +523,11 @@
             </p>
           </div>
           <div class="exec-card">
-            <img src="execphotos/shannonm.png" alt="Shannon Moran Executive Photo" class="exec-photo" />
+            <img
+              src="execphotos/shannonm.png"
+              alt="Shannon Moran Executive Photo"
+              class="exec-photo"
+            />
             <h3>SHANNON MORAN</h3>
             <h4><i>Social Media Manager</i></h4>
             <p>
@@ -493,7 +549,11 @@
             </p>
           </div>
           <div class="exec-card">
-            <img src="execphotos/clairew.JPG" alt="Claire Wendland Executive Photo" class="exec-photo" />
+            <img
+              src="execphotos/clairew.JPG"
+              alt="Claire Wendland Executive Photo"
+              class="exec-photo"
+            />
             <h3>CLAIRE WENDLAND</h3>
             <h4><i>Event Coordinator/IIDA Liaison</i></h4>
             <p>
@@ -512,14 +572,16 @@
             </p>
           </div>
           <div class="exec-card">
-        
-      
-              <img src="execphotos/evelyns.jpeg" alt="Evelyn Srubas Executive Photo" class="exec-photo" />
-              <h3>EVELYN SRUBAS</h3>
-              <h4><i>Event Coordinator</i></h4>
-              <p>
-                Year in School: Senior <br />
-                Hometown: Green Bay, WI <br />
+            <img
+              src="execphotos/evelyns.jpeg"
+              alt="Evelyn Srubas Executive Photo"
+              class="exec-photo"
+            />
+            <h3>EVELYN SRUBAS</h3>
+            <h4><i>Event Coordinator</i></h4>
+            <p>
+              Year in School: Senior <br />
+              Hometown: Green Bay, WI <br />
               Hobbies: Embroidery, Cooking/Baking, and Hiking!<br />
               Favorite Thing About IDO: creating an opportunity to develop a
               stronger community in IA, and growing as a professional through
@@ -533,7 +595,11 @@
             </p>
           </div>
           <div class="exec-card">
-            <img src="execphotos/natalieh.jpeg" alt="Natalie Holzhauer Executive Photo" class="exec-photo" />
+            <img
+              src="execphotos/natalieh.jpeg"
+              alt="Natalie Holzhauer Executive Photo"
+              class="exec-photo"
+            />
             <h3>NATALIE HOLZHAUER</h3>
             <h4><i>Communications & Outreach Admin</i></h4>
             <p>
@@ -559,16 +625,24 @@
     <footer class="site-footer">
       <div class="brand">
         <div>
-          <div style="font-weight:800">Interior Design Organization</div>
-        
+          <div style="font-weight: 800">Interior Design Organization</div>
+        </div>
       </div>
       <div class="links">
         <a href="mailto:ido.uwmadison@gmail.com">
-          <img src="EmailIcon.png" alt="Email" onerror="this.onerror=null;this.src='EmailIcon.png'"/>
+          <img
+            src="EmailIcon.png"
+            alt="Email"
+            onerror="this.onerror=null;this.src='EmailIcon.png'"
+          />
           ido.uwmadison@gmail.com
         </a>
         <a href="https://www.instagram.com/idouwmadison/?hl=en" target="_blank">
-          <img src="InstaIcon.png" alt="Instagram" onerror="this.onerror=null;this.src='InstaIcon.png'"/>
+          <img
+            src="InstaIcon.png"
+            alt="Instagram"
+            onerror="this.onerror=null;this.src='InstaIcon.png'"
+          />
           @idouwmadison
         </a>
       </div>

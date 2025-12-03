@@ -86,6 +86,7 @@ function showLogoutOnly(user) {
         .doc(user.uid)
         .get()
         .then((doc) => {
+          console.log(greetingLeft);
           if (doc.exists && doc.data().firstName) {
             greetingLeft.textContent = `Hello, ${doc.data().firstName}`;
             greetingLeft.style.display = "inline-block";
@@ -93,6 +94,9 @@ function showLogoutOnly(user) {
             greetingLeft.textContent = "Hello!";
             greetingLeft.style.display = "inline-block";
           }
+          if (doc.data().registered_user == 1) {
+            memberportalbtn.classList.remove("is-hidden");
+          } else memberportalbtn.classList.add("is-hidden");
         })
         .catch(() => {
           greetingLeft.textContent = "Hello!";
@@ -141,6 +145,8 @@ r_e("signup-form").addEventListener("submit", (e) => {
         firstName: fname,
         lastName: lname,
         email: email,
+        admin: 0,
+        registered_user: 0,
       });
     })
     .catch((error) => {
@@ -239,7 +245,16 @@ function openMembersPortal() {
     alert("Please sign in to access the Members Portal.");
     return;
   }
+  // read the documents to see if they are an admin stuff
 
+  db.collection("users")
+    .doc(auth.currentUser.uid)
+    .get()
+    .then((doc) => {
+      if (doc.data().registered_user == 1) {
+        all_users("edit");
+      } else all_users(0);
+    });
   Home.classList.add("is-hidden");
   About.classList.add("is-hidden");
   MembersPortal.classList.remove("is-hidden");
@@ -301,3 +316,43 @@ window.addEventListener("DOMContentLoaded", () => {
 // if (signedin == true) {
 //   MembersPortal.classList.remove("is-hidden");
 // }
+
+// admin status
+function all_users(mode) {
+  if (mode == 0) {
+    // don't show any user data
+    r_e("registered_users").innerHTML = "";
+    r_e("admin_users").innerHTML = "";
+    return;
+  }
+
+  db.collection("users")
+    .where("admin", "==", 0)
+    .get()
+    .then((data) => {
+      mydocs = data.docs;
+      let html = ``;
+      mydocs.forEach((d) => {
+        html += `<p>${d.id}</p>`;
+        if (mode == "edit")
+          html += `<button id="${d.id}" onclick="make_admin('${d.id}')">Make Admin</button></p>`;
+      });
+      r_e("registered_users").innerHTML = html;
+    });
+}
+function make_admin(id) {
+  db.collection("users")
+    .doc(id)
+    .set({
+      admin: 1,
+    })
+    .then(() => all_users("edit"));
+}
+function make_regular_user(id) {
+  db.collection("users")
+    .doc(id)
+    .set({
+      admin: 0,
+    })
+    .then(() => all_users("edit"));
+}
