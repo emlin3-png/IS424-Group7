@@ -234,13 +234,22 @@ gotoAbout.forEach((link) => {
     Contact.classList.add("is-hidden");
   });
 });
+function openMembersPortal() {
+  if (!auth.currentUser) {
+    alert("Please sign in to access the Members Portal.");
+    return;
+  }
+
+  Home.classList.add("is-hidden");
+  About.classList.add("is-hidden");
+  MembersPortal.classList.remove("is-hidden");
+  Contact.classList.add("is-hidden");
+}
 
 gotoMembersPortal.forEach((link) => {
-  link.addEventListener("click", () => {
-    Home.classList.add("is-hidden");
-    About.classList.add("is-hidden");
-    MembersPortal.classList.remove("is-hidden");
-    Contact.classList.add("is-hidden");
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    openMembersPortal();
   });
 });
 
@@ -253,7 +262,6 @@ gotoContact.forEach((link) => {
   });
 });
 
-// NAV active state handling: mark clicked nav item or current page
 function clearActiveNav() {
   document
     .querySelectorAll(".nav-right a, .nav-right p")
