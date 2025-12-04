@@ -574,59 +574,111 @@ function all_users(mode) {
     });
 }
 function make_admin(id) {
-  if (confirm("Make this user an admin?")) {
-    db.collection("users")
-      .doc(id)
-      .update({
-        admin: 1,
-      })
-      .then(() => {
-        alert("User is now an admin!");
-        all_users("edit");
-      })
-      .catch((error) => alert("Error: " + error.message));
+  // Verify current user is admin before allowing this action
+  if (!auth.currentUser) {
+    alert("You must be logged in to perform this action.");
+    return;
   }
+  
+  db.collection("users").doc(auth.currentUser.uid).get().then((doc) => {
+    if (!doc.exists || doc.data().admin !== 1) {
+      alert("Only admins can perform this action.");
+      return;
+    }
+    
+    if (confirm("Make this user an admin?")) {
+      db.collection("users")
+        .doc(id)
+        .update({
+          admin: 1,
+        })
+        .then(() => {
+          alert("User is now an admin!");
+          all_users("edit");
+        })
+        .catch((error) => alert("Error: " + error.message));
+    }
+  });
 }
 
 function make_regular_user(id) {
-  if (confirm("Remove admin privileges from this user?")) {
-    db.collection("users")
-      .doc(id)
-      .update({
-        admin: 0,
-      })
-      .then(() => {
-        alert("Admin privileges removed!");
-        all_users("edit");
-      })
-      .catch((error) => alert("Error: " + error.message));
+  // Verify current user is admin before allowing this action
+  if (!auth.currentUser) {
+    alert("You must be logged in to perform this action.");
+    return;
   }
+  
+  db.collection("users").doc(auth.currentUser.uid).get().then((doc) => {
+    if (!doc.exists || doc.data().admin !== 1) {
+      alert("Only admins can perform this action.");
+      return;
+    }
+    
+    if (confirm("Remove admin privileges from this user?")) {
+      db.collection("users")
+        .doc(id)
+        .update({
+          admin: 0,
+        })
+        .then(() => {
+          alert("Admin privileges removed!");
+          all_users("edit");
+        })
+        .catch((error) => alert("Error: " + error.message));
+    }
+  });
 }
 
 function delete_user(id, email) {
-  if (confirm(`Are you sure you want to permanently delete ${email}? This cannot be undone.`)) {
-    db.collection("users")
-      .doc(id)
-      .delete()
-      .then(() => {
-        alert("User deleted successfully!");
-        all_users("edit");
-      })
-      .catch((error) => alert("Error deleting user: " + error.message));
+  // Verify current user is admin before allowing this action
+  if (!auth.currentUser) {
+    alert("You must be logged in to perform this action.");
+    return;
   }
+  
+  db.collection("users").doc(auth.currentUser.uid).get().then((doc) => {
+    if (!doc.exists || doc.data().admin !== 1) {
+      alert("Only admins can perform this action.");
+      return;
+    }
+    
+    if (confirm(`Are you sure you want to permanently delete ${email}? This cannot be undone.`)) {
+      db.collection("users")
+        .doc(id)
+        .delete()
+        .then(() => {
+          alert("User deleted successfully!");
+          all_users("edit");
+        })
+        .catch((error) => alert("Error deleting user: " + error.message));
+    }
+  });
 }
 
 function approve_user(id) {
-  if (confirm("Approve this user to access the Members Portal?")) {
-    db.collection("users")
-      .doc(id)
-      .update({
-        approved: true,
-      })
-      .then(() => {
-        alert("User approved!");
-        all_users("edit");
-      })
-      .catch((error) => alert("Error: " + error.message));
+  // Verify current user is admin before allowing this action
+  if (!auth.currentUser) {
+    alert("You must be logged in to perform this action.");
+    return;
   }
+  
+  db.collection("users").doc(auth.currentUser.uid).get().then((doc) => {
+    if (!doc.exists || doc.data().admin !== 1) {
+      alert("Only admins can perform this action.");
+      return;
+    }
+    
+    if (confirm("Approve this user to access the Members Portal?")) {
+      db.collection("users")
+        .doc(id)
+        .update({
+          approved: true,
+        })
+        .then(() => {
+          alert("User approved!");
+          all_users("edit");
+        })
+        .catch((error) => alert("Error: " + error.message));
+    }
+  });
 }
