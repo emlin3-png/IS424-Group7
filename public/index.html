@@ -97,14 +97,18 @@
     </nav>
     <script>
       // Hide main content and footer immediately if we should be on a different page to prevent flash
-      (function() {
+      (function () {
         var currentPage = localStorage.getItem("currentPage");
         if (currentPage === "members") {
           // For members portal, hide everything until auth check completes
-          document.write('<style>main, .site-footer { visibility: hidden; }</style>');
+          document.write(
+            "<style>main, .site-footer { visibility: hidden; }</style>"
+          );
         } else if (currentPage && currentPage !== "home") {
           // For other pages, just fade in smoothly
-          document.write('<style>main, .site-footer { opacity: 0; transition: opacity 0.1s; }</style>');
+          document.write(
+            "<style>main, .site-footer { opacity: 0; transition: opacity 0.1s; }</style>"
+          );
         }
       })();
     </script>
@@ -332,13 +336,14 @@
               </p>
             </div>
           </a>
-          <!-- <iframe
-        src="https://docs.google.com/presentation/d/1HXTCLHgEFWN1ZFK_2z8cO8hDaN1arX7-9JS-NqIsOjI/view?usp=sharing"
-        frameborder="0"
-        width="960"
-        height="569"
-        allowfullscreen
-      ></iframe> -->
+        </div>
+        <div class="cal-container">
+          <iframe
+            src="https://docs.google.com/presentation/d/1hRC-dgK-wZ2jpIqBvPBc73s6vwtZNLYigPWpDmom8tg/edit?usp=sharing"
+            frameborder="0"
+            allowfullscreen
+          >
+          </iframe>
         </div>
       </div>
       <div id="About" class="is-hidden">
