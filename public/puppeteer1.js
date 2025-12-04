@@ -36,7 +36,7 @@ async function go() {
 
   // now the person will attempt to sign up
   // click Sign Up Button
-  await page.click("#nav-signup"); // <-- replace with your actual sign-up button selector
+  await page.click("#nav-signup");
 
   // input email + pass
   await page.type("#signup-first", "Puppeteer");
