@@ -18,7 +18,6 @@ async function go() {
 
   //   click on contact nav tab
   await page.click(".gotoContact");
-  await page.waitForNavigation();
 
   // click "IDO Inquiries Form" (opens a new 'popup' window)
   const [popupPromise] = await Promise.all([
@@ -35,24 +34,22 @@ async function go() {
   await popupPage.close();
   await page.bringToFront();
 
-  //   // provide email and password to sign in ... type(HTML_ID, value)
-  //   await page.type("#email_", "test1234555@gmail.com");
-  //   await page.type("#password_", "test1234555@gmail.com");
+  // now the person will attempt to sign up
+  // click Sign Up Button
+  await page.click("#nav-signup"); // <-- replace with your actual sign-up button selector
 
-  //   // click the submit button
-  //   await page.click("#signin_form > div:nth-child(3) > div > button");
+  // input email + pass
+  await page.type("#signup-first", "Puppeteer");
+  await page.type("#signup-last", "Puppeteer");
+  await page.type("#signup-email", "puppeteer@gmail.com");
+  await page.type("#signup-password", "puppeteerpassword");
 
-  //   //   force a 1 second delay
-  //   await new Promise((r) => setTimeout(r, 1000));
+  // submit
+  await page.click("#signup-submit");
 
-  //   //   search for a specific car
-  //   await page.type("#search_bar", "Random Car");
-  //   await page.click("#search_button");
-
-  //   //   close the browser after 10 seconds
-  //   await new Promise((r) => setTimeout(r, 10000));
-
-  //   await browser.close();
+  // close browser after 5 sec
+  await new Promise((r) => setTimeout(r, 5000));
+  await browser.close();
 }
 
 // call the function
