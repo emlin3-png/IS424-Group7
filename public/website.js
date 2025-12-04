@@ -224,11 +224,27 @@ window.addEventListener("DOMContentLoaded", () => {
       if (currentPage === "members") {
         // Check if user is approved before showing members portal
         openMembersPortal();
+      } else if (currentPage === "home" || !currentPage) {
+        // Show home if we're supposed to be on home
+        Home.classList.remove("is-hidden");
+        About.classList.add("is-hidden");
+        MembersPortal.classList.add("is-hidden");
+        Contact.classList.add("is-hidden");
       }
     } else {
       resetNav();
       const greetingLeft = document.getElementById("user-greeting-left");
       if (greetingLeft) greetingLeft.style.display = "none";
+      
+      // If not logged in and trying to view members portal, redirect to home
+      const currentPage = localStorage.getItem("currentPage");
+      if (currentPage === "members") {
+        localStorage.setItem("currentPage", "home");
+        Home.classList.remove("is-hidden");
+        About.classList.add("is-hidden");
+        MembersPortal.classList.add("is-hidden");
+        Contact.classList.add("is-hidden");
+      }
     }
   });
   
@@ -244,15 +260,18 @@ window.addEventListener("DOMContentLoaded", () => {
     About.classList.add("is-hidden");
     MembersPortal.classList.add("is-hidden");
     Contact.classList.remove("is-hidden");
-  } else if (!currentPage || currentPage === "home") {
-    // Default to home if no page is stored
-    Home.classList.remove("is-hidden");
-    About.classList.add("is-hidden");
-    MembersPortal.classList.add("is-hidden");
-    Contact.classList.add("is-hidden");
-    localStorage.setItem("currentPage", "home");
+  } else if (currentPage === "members") {
+    // Hide home immediately for members portal, wait for auth check
+    Home.classList.add("is-hidden");
   }
-  // Members portal is handled by auth state
+  
+  // Make main content visible after page is set
+  const mainEl = document.querySelector("main");
+  const footerEl = document.querySelector(".site-footer");
+  if (mainEl) mainEl.style.opacity = "1";
+  if (footerEl) footerEl.style.opacity = "1";
+  
+  // Home page is visible by default, Members portal is handled by auth state
 });
 
 //
@@ -328,6 +347,11 @@ function openMembersPortal() {
           MembersPortal.classList.remove("is-hidden");
           Contact.classList.add("is-hidden");
           localStorage.setItem("currentPage", "members");
+          // Make content visible now that members portal is loaded
+          const mainEl = document.querySelector("main");
+          const footerEl = document.querySelector(".site-footer");
+          if (mainEl) mainEl.style.visibility = "visible";
+          if (footerEl) footerEl.style.visibility = "visible";
           all_users("edit");
         } else if (isApproved) {
           // Approved regular users can access
@@ -337,6 +361,11 @@ function openMembersPortal() {
           MembersPortal.classList.remove("is-hidden");
           Contact.classList.add("is-hidden");
           localStorage.setItem("currentPage", "members");
+          // Make content visible now that members portal is loaded
+          const mainEl = document.querySelector("main");
+          const footerEl = document.querySelector(".site-footer");
+          if (mainEl) mainEl.style.visibility = "visible";
+          if (footerEl) footerEl.style.visibility = "visible";
           all_users(0);
         } else {
           // Not approved yet - block access
@@ -346,15 +375,30 @@ function openMembersPortal() {
           MembersPortal.classList.add("is-hidden");
           Contact.classList.add("is-hidden");
           localStorage.setItem("currentPage", "home");
+          // Make content visible when redirecting to home
+          const mainEl = document.querySelector("main");
+          const footerEl = document.querySelector(".site-footer");
+          if (mainEl) mainEl.style.visibility = "visible";
+          if (footerEl) footerEl.style.visibility = "visible";
         }
       } else {
         console.log("User document not found");
         alert("User account not found. Please contact an administrator.");
+        // Make content visible on error
+        const mainEl = document.querySelector("main");
+        const footerEl = document.querySelector(".site-footer");
+        if (mainEl) mainEl.style.visibility = "visible";
+        if (footerEl) footerEl.style.visibility = "visible";
       }
     })
     .catch((error) => {
       console.error("Error checking admin status:", error);
       alert("Error loading Members Portal. Please try again.");
+      // Make content visible on error
+      const mainEl = document.querySelector("main");
+      const footerEl = document.querySelector(".site-footer");
+      if (mainEl) mainEl.style.visibility = "visible";
+      if (footerEl) footerEl.style.visibility = "visible";
     });
 }
 

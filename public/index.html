@@ -95,6 +95,19 @@
         ></span>
       </div>
     </nav>
+    <script>
+      // Hide main content and footer immediately if we should be on a different page to prevent flash
+      (function() {
+        var currentPage = localStorage.getItem("currentPage");
+        if (currentPage === "members") {
+          // For members portal, hide everything until auth check completes
+          document.write('<style>main, .site-footer { visibility: hidden; }</style>');
+        } else if (currentPage && currentPage !== "home") {
+          // For other pages, just fade in smoothly
+          document.write('<style>main, .site-footer { opacity: 0; transition: opacity 0.1s; }</style>');
+        }
+      })();
+    </script>
     <!-- Sign Up Modal -->
     <div
       id="signup-modal"
@@ -284,7 +297,7 @@
       </form>
     </div>
     <main>
-      <div id="Home" class="is-hidden">
+      <div id="Home" class="">
         <h3 class="uwmadison">University of Wisconsin-Madison</h3>
         <h1 class="ido">Interior Design Organization</h1>
         <div class="container">
