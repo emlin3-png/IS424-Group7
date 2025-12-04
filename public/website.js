@@ -1,4 +1,5 @@
 // Carousel script
+// Updated: Dec 3, 2025 - v3 with admin debugging
 (function () {
   const track = document.querySelector(".carousel-track");
   if (!track) return;
@@ -263,15 +264,40 @@ function openMembersPortal() {
     alert("Please sign in to access the Members Portal.");
     return;
   }
-  // read the documents to see if they are an admin stuff
+  // read the documents to see if they are an admin
 
   db.collection("users")
     .doc(auth.currentUser.uid)
     .get()
     .then((doc) => {
-      if (doc.data().registered_user == 1) {
-        all_users("edit");
-      } else all_users(0);
+      if (doc.exists) {
+        const userData = doc.data();
+        const adminStatus = userData.admin || 0; // Default to 0 if undefined
+        console.log("User data:", userData);
+        console.log("Admin status:", adminStatus);
+        
+        // If admin field is missing, add it
+        if (userData.admin === undefined) {
+          db.collection("users").doc(auth.currentUser.uid).update({ admin: 0 });
+        }
+        
+        if (adminStatus == 1) {
+          // Show admin controls if user is an admin
+          console.log("User is admin - showing controls");
+          all_users("edit");
+        } else {
+          // Don't show admin controls for regular users
+          console.log("User is not admin - hiding controls");
+          all_users(0);
+        }
+      } else {
+        console.log("User document not found");
+        all_users(0);
+      }
+    })
+    .catch((error) => {
+      console.error("Error checking admin status:", error);
+      all_users(0);
     });
   Home.classList.add("is-hidden");
   About.classList.add("is-hidden");
@@ -338,39 +364,88 @@ window.addEventListener("DOMContentLoaded", () => {
 // admin status
 function all_users(mode) {
   if (mode == 0) {
-    // don't show any user data
+    // don't show any user data for regular users
     r_e("registered_users").innerHTML = "";
-    r_e("admin_users").innerHTML = "";
     return;
   }
 
+  // Show admin controls
+  let adminHtml = `<div style="background:#fff; border-radius:18px; box-shadow:0 8px 32px rgba(64,107,140,0.10); border:2px solid #a3c0c8; padding:2rem; margin:2rem auto; max-width:800px;">
+    <h2 style="color:#406b8c; font-size:2rem; margin-bottom:1.5rem;">Admin Controls</h2>
+    <h3 style="color:#406b8c; font-size:1.5rem; margin-top:1.5rem;">Regular Users:</h3>
+    <div id="regular-users-list"></div>
+    <h3 style="color:#406b8c; font-size:1.5rem; margin-top:1.5rem;">Admin Users:</h3>
+    <div id="admin-users-list"></div>
+  </div>`;
+  
+  r_e("registered_users").innerHTML = adminHtml;
+
+  // Get regular users
   db.collection("users")
     .where("admin", "==", 0)
     .get()
     .then((data) => {
-      mydocs = data.docs;
-      let html = ``;
-      mydocs.forEach((d) => {
-        html += `<p>${d.id}</p>`;
-        if (mode == "edit")
-          html += `<button id="${d.id}" onclick="make_admin('${d.id}')">Make Admin</button></p>`;
+      let html = `<div style="margin-top:1rem;">`;
+      data.docs.forEach((d) => {
+        const userData = d.data();
+        html += `<div style="padding:0.8rem; margin:0.5rem 0; background:#f7fafc; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong>${userData.firstName || 'N/A'} ${userData.lastName || ''}</strong><br>
+            <small style="color:#6b7f8d;">${userData.email || d.id}</small>
+          </div>
+          <button onclick="make_admin('${d.id}')" style="background:#a3c0c8; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Make Admin</button>
+        </div>`;
       });
-      r_e("registered_users").innerHTML = html;
+      html += `</div>`;
+      document.getElementById("regular-users-list").innerHTML = html;
+    });
+
+  // Get admin users
+  db.collection("users")
+    .where("admin", "==", 1)
+    .get()
+    .then((data) => {
+      let html = `<div style="margin-top:1rem;">`;
+      data.docs.forEach((d) => {
+        const userData = d.data();
+        html += `<div style="padding:0.8rem; margin:0.5rem 0; background:#f7fafc; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong>${userData.firstName || 'N/A'} ${userData.lastName || ''}</strong> <span style="color:#406b8c; font-weight:600;">(Admin)</span><br>
+            <small style="color:#6b7f8d;">${userData.email || d.id}</small>
+          </div>
+          <button onclick="make_regular_user('${d.id}')" style="background:#cbd5e1; color:#333; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Remove Admin</button>
+        </div>`;
+      });
+      html += `</div>`;
+      document.getElementById("admin-users-list").innerHTML = html;
     });
 }
 function make_admin(id) {
-  db.collection("users")
-    .doc(id)
-    .set({
-      admin: 1,
-    })
-    .then(() => all_users("edit"));
+  if (confirm("Make this user an admin?")) {
+    db.collection("users")
+      .doc(id)
+      .update({
+        admin: 1,
+      })
+      .then(() => {
+        alert("User is now an admin!");
+        all_users("edit");
+      })
+      .catch((error) => alert("Error: " + error.message));
+  }
 }
+
 function make_regular_user(id) {
-  db.collection("users")
-    .doc(id)
-    .set({
-      admin: 0,
-    })
-    .then(() => all_users("edit"));
+  if (confirm("Remove admin privileges from this user?")) {
+    db.collection("users")
+      .doc(id)
+      .update({
+        admin: 0,
+      })
+      .then(() => {
+        alert("Admin privileges removed!");
+        all_users("edit");
+      })
+      .catch((error) => alert("Error: " + error.message));
+  }
 }
