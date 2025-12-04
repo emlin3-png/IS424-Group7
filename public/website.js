@@ -244,8 +244,15 @@ window.addEventListener("DOMContentLoaded", () => {
     About.classList.add("is-hidden");
     MembersPortal.classList.add("is-hidden");
     Contact.classList.remove("is-hidden");
+  } else if (!currentPage || currentPage === "home") {
+    // Default to home if no page is stored
+    Home.classList.remove("is-hidden");
+    About.classList.add("is-hidden");
+    MembersPortal.classList.add("is-hidden");
+    Contact.classList.add("is-hidden");
+    localStorage.setItem("currentPage", "home");
   }
-  // Members portal and home are handled by auth state
+  // Members portal is handled by auth state
 });
 
 //
