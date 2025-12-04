@@ -77,6 +77,13 @@ function showLogoutOnly(user) {
   document.getElementById("nav-signup").style.display = "none";
   document.getElementById("user-greeting").style.display = "none";
   document.getElementById("logout-btn").style.display = "inline-block";
+  
+  // Show Members Portal tab when logged in
+  const memberPortalTab = document.querySelector(".gotoMembersPortal");
+  if (memberPortalTab) {
+    memberPortalTab.style.display = "inline-block";
+  }
+  
   // Show greeting next to logo
   const greetingLeft = document.getElementById("user-greeting-left");
   if (greetingLeft) {
@@ -94,13 +101,18 @@ function showLogoutOnly(user) {
             greetingLeft.textContent = "Hello!";
             greetingLeft.style.display = "inline-block";
           }
-          if (doc.data().registered_user == 1) {
-            memberportalbtn.classList.remove("is-hidden");
-          } else memberportalbtn.classList.add("is-hidden");
+          // Keep Members Portal visible regardless of registered_user status
+          if (memberPortalTab) {
+            memberPortalTab.style.display = "inline-block";
+          }
         })
         .catch(() => {
           greetingLeft.textContent = "Hello!";
           greetingLeft.style.display = "inline-block";
+          // Keep Members Portal visible even if there's an error
+          if (memberPortalTab) {
+            memberPortalTab.style.display = "inline-block";
+          }
         });
     } else {
       greetingLeft.textContent = "Hello!";
@@ -114,6 +126,12 @@ function resetNav() {
   document.getElementById("nav-signup").style.display = "inline-block";
   document.getElementById("user-greeting").style.display = "none";
   document.getElementById("logout-btn").style.display = "none";
+  
+  // Hide Members Portal tab when logged out
+  const memberPortalTab = document.querySelector(".gotoMembersPortal");
+  if (memberPortalTab) {
+    memberPortalTab.style.display = "none";
+  }
 }
 
 // Note to self: use command + / to comment chunks out!

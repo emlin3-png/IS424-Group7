@@ -94,6 +94,10 @@ nav {
   cursor: pointer;
 }
 
+.nav-right p.gotoMembersPortal {
+  display: none; /* Hidden by default, shown when logged in */
+}
+
 .nav-right {
   display: flex;
   align-items: center;
