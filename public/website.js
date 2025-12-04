@@ -220,6 +220,29 @@ window.addEventListener("DOMContentLoaded", () => {
       if (greetingLeft) greetingLeft.style.display = "none";
     }
   });
+  
+  // Restore the last visited page
+  const currentPage = localStorage.getItem("currentPage");
+  if (currentPage === "about") {
+    Home.classList.add("is-hidden");
+    About.classList.remove("is-hidden");
+    MembersPortal.classList.add("is-hidden");
+    Contact.classList.add("is-hidden");
+  } else if (currentPage === "members") {
+    // Only open members portal if user is logged in
+    if (auth.currentUser) {
+      openMembersPortal();
+    } else {
+      // If not logged in, go to home instead
+      localStorage.setItem("currentPage", "home");
+    }
+  } else if (currentPage === "contact") {
+    Home.classList.add("is-hidden");
+    About.classList.add("is-hidden");
+    MembersPortal.classList.add("is-hidden");
+    Contact.classList.remove("is-hidden");
+  }
+  // Default is home (already visible by default)
 });
 
 //
@@ -248,6 +271,7 @@ gotoHome.forEach((link) => {
     About.classList.add("is-hidden");
     MembersPortal.classList.add("is-hidden");
     Contact.classList.add("is-hidden");
+    localStorage.setItem("currentPage", "home");
   });
 });
 
@@ -257,6 +281,7 @@ gotoAbout.forEach((link) => {
     About.classList.remove("is-hidden");
     MembersPortal.classList.add("is-hidden");
     Contact.classList.add("is-hidden");
+    localStorage.setItem("currentPage", "about");
   });
 });
 function openMembersPortal() {
@@ -303,6 +328,7 @@ function openMembersPortal() {
   About.classList.add("is-hidden");
   MembersPortal.classList.remove("is-hidden");
   Contact.classList.add("is-hidden");
+  localStorage.setItem("currentPage", "members");
 }
 
 gotoMembersPortal.forEach((link) => {
@@ -318,6 +344,7 @@ gotoContact.forEach((link) => {
     About.classList.add("is-hidden");
     MembersPortal.classList.add("is-hidden");
     Contact.classList.remove("is-hidden");
+    localStorage.setItem("currentPage", "contact");
   });
 });
 
@@ -386,14 +413,20 @@ function all_users(mode) {
     .get()
     .then((data) => {
       let html = `<div style="margin-top:1rem;">`;
+      if (data.docs.length === 0) {
+        html += `<p style="color:#6b7f8d; font-style:italic;">No regular users found.</p>`;
+      }
       data.docs.forEach((d) => {
         const userData = d.data();
-        html += `<div style="padding:0.8rem; margin:0.5rem 0; background:#f7fafc; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+        html += `<div style="padding:0.8rem; margin:0.5rem 0; background:#f7fafc; border-radius:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
           <div>
             <strong>${userData.firstName || 'N/A'} ${userData.lastName || ''}</strong><br>
             <small style="color:#6b7f8d;">${userData.email || d.id}</small>
           </div>
-          <button onclick="make_admin('${d.id}')" style="background:#a3c0c8; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Make Admin</button>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button onclick="make_admin('${d.id}')" style="background:#a3c0c8; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Make Admin</button>
+            <button onclick="delete_user('${d.id}', '${userData.email || 'this user'}')" style="background:#ef4444; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Delete</button>
+          </div>
         </div>`;
       });
       html += `</div>`;
@@ -406,14 +439,20 @@ function all_users(mode) {
     .get()
     .then((data) => {
       let html = `<div style="margin-top:1rem;">`;
+      if (data.docs.length === 0) {
+        html += `<p style="color:#6b7f8d; font-style:italic;">No admin users found.</p>`;
+      }
       data.docs.forEach((d) => {
         const userData = d.data();
-        html += `<div style="padding:0.8rem; margin:0.5rem 0; background:#f7fafc; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+        html += `<div style="padding:0.8rem; margin:0.5rem 0; background:#f7fafc; border-radius:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
           <div>
             <strong>${userData.firstName || 'N/A'} ${userData.lastName || ''}</strong> <span style="color:#406b8c; font-weight:600;">(Admin)</span><br>
             <small style="color:#6b7f8d;">${userData.email || d.id}</small>
           </div>
-          <button onclick="make_regular_user('${d.id}')" style="background:#cbd5e1; color:#333; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Remove Admin</button>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button onclick="make_regular_user('${d.id}')" style="background:#cbd5e1; color:#333; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Remove Admin</button>
+            <button onclick="delete_user('${d.id}', '${userData.email || 'this admin'}')" style="background:#ef4444; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600;">Delete</button>
+          </div>
         </div>`;
       });
       html += `</div>`;
@@ -447,5 +486,18 @@ function make_regular_user(id) {
         all_users("edit");
       })
       .catch((error) => alert("Error: " + error.message));
+  }
+}
+
+function delete_user(id, email) {
+  if (confirm(`Are you sure you want to permanently delete ${email}? This cannot be undone.`)) {
+    db.collection("users")
+      .doc(id)
+      .delete()
+      .then(() => {
+        alert("User deleted successfully!");
+        all_users("edit");
+      })
+      .catch((error) => alert("Error deleting user: " + error.message));
   }
 }
